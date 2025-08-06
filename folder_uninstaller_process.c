@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include "file_uninstaller_process.h"
 
-void clear_folder(void)
+void clear_folder(char *exe_name)
 {
     struct dirent *dir;
 
@@ -12,10 +12,12 @@ void clear_folder(void)
         {
             dir = readdir(d);
             dir = readdir(d);
+            char *actual_exe_name = strdup(exe_name);
+
             while ((dir = readdir(d)) != NULL)
-                if(!strcmp(dir->d_name,"auto-uninstaller.exe") != 0)
+                if(strcmp(dir->d_name,actual_exe_name) != 0)
                     desinstall(dir->d_name);
-            
+
             closedir(d);
         }
         printf("\nDone !\n");

@@ -3,12 +3,13 @@
 #include "folder_uninstaller_process.h"
 #include "file_uninstaller_process.h"
 #include "extension_uninstaller_process.h"
+#include "all_function.h"
 
 #define RED     "\033[31m"      /* Red */
 #define RESET   "\033[0m"
 #define BLUE    "\033[34m"      /* Blue */
 
-int main(void)
+int main()
 {
     int instruction;
 
@@ -22,7 +23,7 @@ int main(void)
         scanf("%d", &instruction);
 
         if(instruction==0)
-            clear_folder();
+            clear_folder(__argv[0]);
         else{
             main();
             return 1;
