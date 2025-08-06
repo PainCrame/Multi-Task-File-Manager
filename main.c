@@ -5,9 +5,9 @@
 #include "extension_uninstaller_process.h"
 #include "all_function.h"
 
-#define RED     "\033[31m"      /* Red */
+#define RED     "\033[31m"
 #define RESET   "\033[0m"
-#define BLUE    "\033[34m"      /* Blue */
+#define BLUE    "\033[34m"
 
 int main()
 {
