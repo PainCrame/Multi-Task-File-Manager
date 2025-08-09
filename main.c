@@ -9,53 +9,55 @@
 #define RESET   "\033[0m"
 #define BLUE    "\033[34m"
 
-int main()
+int main(int argc, char *argv[])
 {
-    int instruction;
-
-    printf("\nWelcome to the uninstaller program!\n");
-    printf("\nDo you want to : "BLUE "DELETE SPECIFICS FILES (0)"RESET" or "BLUE"CLEAR THE FOLDER (1) : "RESET);
-    scanf("%d", &instruction);
-    
-    if(instruction == 1)
+    while(1)
     {
-        printf(RED"WARNING"RESET": Are you sure ? The entire folder will be delete. " BLUE "CONTINUE (0)" RESET " or" BLUE " RETURN (1)"RESET " : ");
-        scanf("%d", &instruction);
+        int instruction;
 
-        if(instruction==0)
-            clear_folder(__argv[0]);
-        else{
-            main();
+        printf("\nWelcome to the uninstaller program!\n");
+        printf("\nDo you want to : "BLUE "DELETE SPECIFICS FILES (0)"RESET" or "BLUE"CLEAR THE FOLDER (1) : "RESET);
+        scanf("%d", &instruction);
+        
+        if(instruction == 1)
+        {
+            printf(RED"WARNING"RESET": Are you sure ? The entire folder will be delete. " BLUE "CONTINUE (0)" RESET " or" BLUE " RETURN (1)"RESET " : ");
+            scanf("%d", &instruction);
+
+            if(instruction==0)
+                clear_folder(argv[0]);
+            else{
+                continue;
+            }
             return 1;
         }
-        return 1;
-    }
-    else if(instruction == 0){
-        instruction = 3;
+        else if(instruction == 0){
+            instruction = 3;
 
-        printf("\nDo you want uninstall files by :"BLUE" NAMES (0)"RESET" or"BLUE" EXTENSION (1)"RESET" : ");
-        scanf("%d", &instruction);
+            printf("\nDo you want uninstall files by :"BLUE" NAMES (0)"RESET" or"BLUE" EXTENSION (1)"RESET" : ");
+            scanf("%d", &instruction);
 
-        if(instruction == 0)
-        {
-            
-            process_uninstall_file();
+            if(instruction == 0)
+            {
+                
+                process_uninstall_file();
+            }
+            else if(instruction == 1)
+            {
+                uninstall_extension();
+            }
+            else
+            {
+                printf( "\nInvalid option. Please try again.\n");
+                system("PAUSE");
+                return 1;
+            }
         }
-        else if(instruction == 1)
-        {
-            uninstall_extension();
-        }
-        else
-        {
+        else{
             printf( "\nInvalid option. Please try again.\n");
             system("PAUSE");
             return 1;
         }
-    }
-    else{
-        printf( "\nInvalid option. Please try again.\n");
-        system("PAUSE");
-        return 1;
     }
 
     return 0;
