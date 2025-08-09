@@ -9,15 +9,17 @@
 #define BOLDWHITE   "\033[1m\033[37m"      /* Bold White */
 #define BLUE    "\033[34m"      /* Blue */
 
-
-
-void uninstall_extension(void)
+void uninstall_extension(char *exe_name_path)
 {
     int decision;
     char instruction[255];
     char exception[255] = "!NULL!";
     struct dirent *dir;
     int wait;
+
+    char *exe_path_cpy = strdup(exe_name_path);
+    char *actual_exe_name = get_exe_name(exe_path_cpy);
+    free(exe_path_cpy);
 
     printf("\n Enter the name of the extension: ");
     scanf("%d", &wait);
@@ -52,7 +54,7 @@ void uninstall_extension(void)
     {
         while ((dir = readdir(d)) != NULL )
         {
-            if((haveExtension(dir->d_name, list_instruction)==1) && (isException(dir->d_name, list_exception)==0))
+            if( (haveExtension(dir->d_name, list_instruction)==1) && (isException(dir->d_name, list_exception)==0) && (strcmp(actual_exe_name, dir->d_name)!=0) )
             {
                 desinstall(dir->d_name);
             }

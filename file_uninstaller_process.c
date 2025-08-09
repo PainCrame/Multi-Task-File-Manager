@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "all_function.h"
 
 #define RESET   "\033[0m"
 #define RED     "\033[31m"      /* Red */
@@ -30,7 +31,11 @@ void desinstall(char *file_name)
 
     if(file == NULL)
     {
-        error(file_name);
+        if(!isFolder(file_name))
+            error(file_name);
+        else{
+            return;
+        }
     }
 
     fclose(file);

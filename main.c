@@ -22,12 +22,11 @@ int main(int argc, char *argv[])
         
         if(instruction == 1)
         {
-            printf(RED"WARNING"RESET": Are you sure ? The entire folder will be delete. " BLUE "CONTINUE (0)" RESET " or" BLUE " RETURN (1)"RESET " : ");
+            printf(RED"WARNING"RESET": Are you sure ? The entire folder will be delete (excepting folders). " BLUE "CONTINUE (0)" RESET " or" BLUE " RETURN (1)"RESET " : ");
             scanf("%d", &instruction);
 
             if(instruction==0)
-            {
-               
+            {  
                 clear_folder(argv[0]);
             }
                 else{
@@ -48,7 +47,7 @@ int main(int argc, char *argv[])
             }
             else if(instruction == 1)
             {
-                uninstall_extension();
+                uninstall_extension(argv[0]);
             }
             else
             {

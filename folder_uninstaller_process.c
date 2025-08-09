@@ -2,48 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "file_uninstaller_process.h"
-
-#ifdef _WIN32 
-    #define get_exe_name get_exe_name_antislash
-#elif defined __linux__ || defined __APPLE__
-    #define get_exe_name get_exe_name_slash
-#endif
-    
-char *get_exe_name_antislash(char *path)
-{
-    char *token;
-    char *token_save;
-    char *separator = "\\";
-
-    token = strtok(path, separator);
-
-    while(token != NULL)
-    {
-        token_save = token;
-        token = strtok(NULL, separator);
-    }
-
-    char *exe_name = strdup(token_save);
-    return exe_name;
-}
-
-char *get_exe_name_slash(char *path)
-{
-    char *token;
-    char *token_save;
-    char *separator = "/";
-
-    token = strtok(path, separator);
-
-    while(token != NULL)
-    {
-        token_save = token;
-        token = strtok(NULL, separator);
-    }
-
-    char *exe_name = strdup(token_save);
-    return exe_name;
-}
+#include "all_function.h"
 
 void clear_folder(char *exe_path)
 {

@@ -1,6 +1,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <dirent.h>
 
 int chararrlen(char **array)
 {
@@ -131,4 +132,54 @@ int get_nb_element_in_string(char *variable)
     free(variable_copy);
 
     return element_nb;
+}
+
+int isFolder(char *name)
+{
+    DIR *d = opendir(name);
+
+    if(d != NULL)
+    {
+        closedir(d);
+        return 1;
+    }else{
+        return 0;
+    }
+
+}
+
+char *get_exe_name_antislash(char *path)
+{
+    char *token;
+    char *token_save;
+    char *separator = "\\";
+
+    token = strtok(path, separator);
+
+    while(token != NULL)
+    {
+        token_save = token;
+        token = strtok(NULL, separator);
+    }
+
+    char *exe_name = strdup(token_save);
+    return exe_name;
+}
+
+char *get_exe_name_slash(char *path)
+{
+    char *token;
+    char *token_save;
+    char *separator = "/";
+
+    token = strtok(path, separator);
+
+    while(token != NULL)
+    {
+        token_save = token;
+        token = strtok(NULL, separator);
+    }
+
+    char *exe_name = strdup(token_save);
+    return exe_name;
 }
