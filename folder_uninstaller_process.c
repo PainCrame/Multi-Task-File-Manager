@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include "file_uninstaller_process.h"
 
-#if  _WIN32 
+#ifdef _WIN32 
     #define get_exe_name get_exe_name_antislash
 #elif defined __linux__ || defined __APPLE__
     #define get_exe_name get_exe_name_slash
