@@ -4,6 +4,7 @@
 #include "file_uninstaller_process.h"
 #include "extension_uninstaller_process.h"
 #include "all_function.h"
+#include <string.h>
 
 #define RED     "\033[31m"
 #define RESET   "\033[0m"
@@ -25,8 +26,11 @@ int main(int argc, char *argv[])
             scanf("%d", &instruction);
 
             if(instruction==0)
+            {
+               
                 clear_folder(argv[0]);
-            else{
+            }
+                else{
                 continue;
             }
             return 1;
