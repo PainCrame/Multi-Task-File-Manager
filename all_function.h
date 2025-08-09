@@ -8,7 +8,7 @@ int isException(char *file_name, char **all_exception); // vérifie si le fichie
 char *get_extension(char *file_name); // renvoie l'extension du fichier passé en argument
 int get_nb_element_in_string(char *variable); //récupère le nombre de *char dans une phrase
 int isFolder(char *name); //vérifie si l'erreur de lecture est généré par le fait que le nom soit un nom de dossier
-char *get_exe_name(char *path);
+char *get_exe_name(char *path); //récupère le nom de l'exe au courant
 
 
 #endif

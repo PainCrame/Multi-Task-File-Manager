@@ -54,7 +54,7 @@ void uninstall_extension(char *exe_name_path)
     {
         while ((dir = readdir(d)) != NULL )
         {
-            if( (haveExtension(dir->d_name, list_instruction)==1) && (isException(dir->d_name, list_exception)==0) && (strcmp(actual_exe_name, dir->d_name)!=0) )
+            if( (haveExtension(dir->d_name, list_instruction)==1) && (isException(dir->d_name, list_exception)==0) && (strcmp(actual_exe_name, dir->d_name)!=0) ) //si le fichier possède l'extension, n'est pas une exception, et n'est pas l'exe
             {
                 desinstall(dir->d_name);
             }

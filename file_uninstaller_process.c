@@ -31,7 +31,7 @@ void desinstall(char *file_name)
 
     if(file == NULL)
     {
-        if(!isFolder(file_name))
+        if(!isFolder(file_name)) //si l'ouverture du fichier échoue, vérifie d'abord si c'est parce que il est un dossier
             error(file_name);
         else{
             return;

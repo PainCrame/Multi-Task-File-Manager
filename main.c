@@ -28,9 +28,11 @@ int main(int argc, char *argv[])
             if(instruction==0)
             {  
                 clear_folder(argv[0]);
-            }
-                else{
+
+            }else{
+
                 continue;
+                
             }
             return 1;
         }
