@@ -3,6 +3,12 @@
 #include <stdlib.h>
 #include <dirent.h>
 
+#ifdef _WIN32 
+    #define slash "\\"
+#elif defined __linux__ || defined __APPLE__
+    #define slash "/"
+#endif
+
 int chararrlen(char **array)
 {
     int i = 0; 
@@ -148,29 +154,11 @@ int isFolder(char *name)
 
 }
 
-char *get_exe_name_antislash(char *path)
+char *get_exe_name(char *path)
 {
     char *token;
     char *token_save;
-    char *separator = "\\";
-
-    token = strtok(path, separator);
-
-    while(token != NULL)
-    {
-        token_save = token;
-        token = strtok(NULL, separator);
-    }
-
-    char *exe_name = strdup(token_save);
-    return exe_name;
-}
-
-char *get_exe_name_slash(char *path)
-{
-    char *token;
-    char *token_save;
-    char *separator = "/";
+    char *separator = slash;
 
     token = strtok(path, separator);
 
