@@ -17,8 +17,7 @@ int error(char *file_name)
         printf(RED"\nFile"RESET WHITE" %s" RESET RED " don't exist"RESET, file_name);
         printf(YELLOW"\nEnd of uninstallation."RESET);
         printf("\nPlease check the file name or if the file is not already open, and try again.\n"); 
-        system("PAUSE");
-        exit(1);
+        stopRun();
 
     return 1;
 }
@@ -74,7 +73,6 @@ void process_uninstall_file(void)
     }
 
     printf("\nDone !\n");
-    system("PAUSE");
-    exit(0);
+    stopRun();
 
 }

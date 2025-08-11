@@ -176,5 +176,12 @@ void viderBuffer(void)
 {
     int c;
     while((c=getchar()) != EOF && c != '\n');
-    
+
+}
+
+void stopRun(void)
+{
+    printf("Press Enter to EXIT");
+    getchar();
+    exit(0);
 }

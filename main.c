@@ -56,14 +56,12 @@ int main(int argc, char *argv[])
             else
             {
                 printf( "\nInvalid option. Please try again.\n");
-                system("PAUSE");
-                return 1;
+                stopRun();
             }
         }
         else{
             printf( "\nInvalid option. Please try again.\n");
-            system("PAUSE");
-            return 1;
+            stopRun();
         }
     }
 

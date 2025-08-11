@@ -10,6 +10,7 @@ int get_nb_element_in_string(char *variable); //récupère le nombre de *char da
 int isFolder(char *name); //vérifie si l'erreur de lecture est généré par le fait que le nom soit un nom de dossier
 char *get_exe_name(char *path); //récupère le nom de l'exe au courant
 void viderBuffer(void); //vide le buffer
+void stopRun(void);
 
 
 #endif
