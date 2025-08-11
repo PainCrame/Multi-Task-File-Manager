@@ -15,23 +15,21 @@ void uninstall_extension(char *exe_name_path)
     char instruction[255];
     char exception[255] = "!NULL!";
     struct dirent *dir;
-    int wait;
 
     char *exe_path_cpy = strdup(exe_name_path);
     char *actual_exe_name = get_exe_name(exe_path_cpy);
     free(exe_path_cpy);
 
     printf("\n Enter the name of the extension: ");
-    scanf("%d", &wait);
     fgets(instruction, sizeof(instruction), stdin);
 
     printf("Any file exception ?"BLUE" YES (0)"RESET BLUE" or NO (1) "RESET);
     scanf("%d", &decision);
+    viderBuffer();
 
     if(decision==0){
         printf("Enter"BOLDWHITE" complete names"RESET" of files (separed by "BOLDWHITE"comas"RESET") : ");
-        scanf("%d", &wait);
-        // fgets(exception, sizeof(exception), stdin);
+
         fgets(exception, sizeof(exception), stdin);
     }
     

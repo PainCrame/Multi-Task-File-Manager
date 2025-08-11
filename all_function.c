@@ -171,3 +171,10 @@ char *get_exe_name(char *path)
     char *exe_name = strdup(token_save);
     return exe_name;
 }
+
+void viderBuffer(void)
+{
+    int c;
+    while((c=getchar()) != EOF && c != '\n');
+    
+}

@@ -19,11 +19,13 @@ int main(int argc, char *argv[])
         printf("\nWelcome to the uninstaller program!\n");
         printf("\nDo you want to : "BLUE "DELETE SPECIFICS FILES (0)"RESET" or "BLUE"CLEAR THE FOLDER (1) : "RESET);
         scanf("%d", &instruction);
+        viderBuffer();
         
         if(instruction == 1)
         {
             printf(RED"WARNING"RESET": Are you sure ? The entire folder will be delete (excepting folders). " BLUE "CONTINUE (0)" RESET " or" BLUE " RETURN (1)"RESET " : ");
             scanf("%d", &instruction);
+            viderBuffer();
 
             if(instruction==0)
             {  
@@ -41,10 +43,10 @@ int main(int argc, char *argv[])
 
             printf("\nDo you want uninstall files by :"BLUE" NAMES (0)"RESET" or"BLUE" EXTENSION (1)"RESET" : ");
             scanf("%d", &instruction);
+            viderBuffer();
 
             if(instruction == 0)
             {
-                
                 process_uninstall_file();
             }
             else if(instruction == 1)

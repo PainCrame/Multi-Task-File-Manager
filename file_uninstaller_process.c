@@ -50,17 +50,14 @@ void desinstall(char *file_name)
 
 void process_uninstall_file(void)
 {
-    int wait2;
 
     // Demander à l'utilisateur les noms des fichiers à désinstaller
     printf("\n Enter the  name of the files to uninstall, with his "BLUE"extension"RESET" (like document"YELLOW".txt"RESET" or image"YELLOW".png"RESET") (separated by "BOLDWHITE"comas"RESET") : ");
     char instruction[255];
-    scanf("%d", &wait2);
+
     // scanf("%s", &instruction);
-    fgets(instruction, sizeof(instruction), stdin);
-
+    fgets(instruction, sizeof(instruction) + sizeof(char), stdin);
     instruction[strcspn(instruction, "\n")] = '\0';
-
 
     // Initialise les delimiteurs Tokenise la chaîne d'entrée pour extraire les noms de fichiers 
     const char *s = " ,;/";
