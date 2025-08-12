@@ -24,6 +24,9 @@ void clear_folder(char *exe_path)
 
             closedir(d);
         }
+        else{
+            error(3, NULL);
+        }
         printf("\nDone !\n");
         stopRun();
 }

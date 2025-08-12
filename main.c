@@ -31,10 +31,12 @@ int main(int argc, char *argv[])
             {  
                 clear_folder(argv[0]);
 
-            }else{
+            }else if( instruction == 1){
 
                 continue;
                 
+            }else{
+                error(2, NULL);
             }
             return 1;
         }
@@ -55,13 +57,11 @@ int main(int argc, char *argv[])
             }
             else
             {
-                printf( "\nInvalid option. Please try again.\n");
-                stopRun();
+                error(2, NULL);
             }
         }
         else{
-            printf( "\nInvalid option. Please try again.\n");
-            stopRun();
+            error(2, NULL);
         }
     }
 

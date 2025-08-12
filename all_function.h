@@ -11,6 +11,7 @@ int isFolder(char *name); //vérifie si l'erreur de lecture est généré par le
 char *get_exe_name(char *path); //récupère le nom de l'exe au courant
 void viderBuffer(void); //vide le buffer
 void stopRun(void);
+int error(int error_code, char *file_name);
 
 
 #endif

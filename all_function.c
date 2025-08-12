@@ -3,6 +3,14 @@
 #include <stdlib.h>
 #include <dirent.h>
 
+#define RESET   "\033[0m"
+#define RED     "\033[31m"      /* Red */
+#define GREEN   "\033[32m"      /* Green */
+#define YELLOW  "\033[33m"      /* Yellow */
+#define BLUE    "\033[34m"      /* Blue */
+#define WHITE   "\033[37m"      /* White */
+#define BOLDWHITE   "\033[1m\033[37m"      /* Bold White */
+
 #ifdef _WIN32 
     #define slash "\\"
 #elif defined __linux__ || defined __APPLE__
@@ -184,4 +192,44 @@ void stopRun(void)
     printf("Press Enter to EXIT");
     getchar();
     exit(0);
+}
+
+int error(int error_code, char *file_name)
+{
+    switch (error_code)
+    {
+    case 0:
+        break;
+    
+    case 1:
+    {
+    // Si le fichier n'existe pas, affiche un message d'erreur et quitte
+        printf(RED"\nERROR : File"RESET WHITE" %s" RESET RED " don't exist"RESET, file_name);
+        printf(YELLOW"\nEnd of uninstallation."RESET);
+        printf("\nPlease check the file name or if the file is not already open, and try again.\n"); 
+        stopRun();
+    }
+
+    case 2:
+    {
+        printf( "\n"RED"ERROR : Invalid option."RESET" Please try again.\n");
+        stopRun();
+    }
+
+    case 3:
+    {
+        printf(RED"ERROR : Failed to open the folder"RESET);
+        stopRun();
+    }
+
+    case 4:
+    {
+        printf(RED"ERROR : Failed to open the folder"RESET);
+        stopRun();
+    }
+    }
+
+        
+
+    return 1;
 }

@@ -11,17 +11,6 @@
 #define WHITE   "\033[37m"      /* White */
 #define BOLDWHITE   "\033[1m\033[37m"      /* Bold White */
 
-int error(char *file_name)
-{
-    // Si le fichier n'existe pas, affiche un message d'erreur et quitte
-        printf(RED"\nFile"RESET WHITE" %s" RESET RED " don't exist"RESET, file_name);
-        printf(YELLOW"\nEnd of uninstallation."RESET);
-        printf("\nPlease check the file name or if the file is not already open, and try again.\n"); 
-        stopRun();
-
-    return 1;
-}
-
 void desinstall(char *file_name)
 {
     // Ouvre le fichier en mode lecture pour vérifier son existence
@@ -31,7 +20,7 @@ void desinstall(char *file_name)
     if(file == NULL)
     {
         if(!isFolder(file_name)) //si l'ouverture du fichier échoue, vérifie d'abord si c'est parce que il est un dossier
-            error(file_name);
+            error(1, file_name);
         else{
             return;
         }
@@ -57,6 +46,9 @@ void process_uninstall_file(void)
     // scanf("%s", &instruction);
     fgets(instruction, sizeof(instruction) + sizeof(char), stdin);
     instruction[strcspn(instruction, "\n")] = '\0';
+
+    if(instruction == NULL)
+        error(4, NULL);
 
     // Initialise les delimiteurs Tokenise la chaîne d'entrée pour extraire les noms de fichiers 
     const char *s = " ,;/";
