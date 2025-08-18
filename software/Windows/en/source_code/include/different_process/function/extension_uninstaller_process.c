@@ -1,13 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <dirent.h>
-#include "all_function.h"
-#include "file_uninstaller_process.h"
-
-#define RESET   "\033[0m"
-#define RED     "\033[31m"      /* Red */
-#define BOLDWHITE   "\033[1m\033[37m"      /* Bold White */
-#define BLUE    "\033[34m"      /* Blue */
+#include ".\..\..\include.h"
 
 void uninstall_extension(char *exe_name_path)
 {

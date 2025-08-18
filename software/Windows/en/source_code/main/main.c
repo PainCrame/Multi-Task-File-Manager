@@ -1,22 +1,33 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include "folder_uninstaller_process.h"
-#include "file_uninstaller_process.h"
-#include "extension_uninstaller_process.h"
-#include "all_function.h"
-#include <string.h>
-
-#define RED     "\033[31m"
-#define RESET   "\033[0m"
-#define BLUE    "\033[34m"
+#include "..\include\include.h"
 
 int main(int argc, char *argv[])
 {
+    DIR *d;
+    if(!(argc == 2 && (d = opendir(argv[1]))))
+    {
+        printf("%d", argc);
+        printf("\nUse command like : mtfm <path_of_the_folder_you_want_to_clean>.\nFor example : \"mtfm C:\\User\\Dekstop\\Downloads\"");
+        getchar();
+        exit(EXIT_FAILURE);
+    }
+    closedir(d);
+
+    int c = chdir(argv[1]);
+    if(! c==0)
+    {
+        perror("Error in opening the folder, please try again\nError ");
+        getchar();
+        exit(EXIT_FAILURE);
+    }
+
+    
     while(1)
     {
         int instruction;
+        char buffer[PATH_MAX];
 
         printf("\nWelcome to the uninstaller program!\n");
+        printf("\nYou're in the folder : %s\n(CTRL+C if you want to exit)\n", getcwd(buffer, PATH_MAX));
         printf("\nDo you want to : "BLUE "DELETE SPECIFICS FILES (0)"RESET" or "BLUE"CLEAR THE FOLDER (1) : "RESET);
         scanf("%d", &instruction);
         viderBuffer();
@@ -29,7 +40,7 @@ int main(int argc, char *argv[])
 
             if(instruction==0)
             {  
-                clear_folder(argv[0]);
+                clear_folder();
 
             }else if( instruction == 1){
 
