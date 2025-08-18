@@ -1,9 +1,0 @@
-{
-    "files.associations": {
-        "all_function.h": "c",
-        "file_uninstaller_process.h": "c",
-        "include.h": "c",
-        "other_function.h": "c",
-        "installer.h": "c"
-    }
-}
