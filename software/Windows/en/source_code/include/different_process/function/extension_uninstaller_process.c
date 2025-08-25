@@ -52,6 +52,9 @@ void uninstall_extension(char *exe_name_path)
         closedir(d);
     }
 
+    free(list_exception);
+    free(list_instruction);
+
     printf("\nDone !\n");
     stopRun();
 }
