@@ -17,6 +17,7 @@
 #define à 133
 #define ä 132
 #define â 131
+#define û 150
 #define ù 151
 #define î 206
 

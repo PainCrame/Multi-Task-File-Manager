@@ -27,14 +27,14 @@ int main(int argc, char *argv[])
         char buffer[PATH_MAX];
 
         printf("\nBienvenue dans le Gestionnaire de Fichier Multi-fonction !\n");
-        printf("\nVous êtes dans le dossier : %s\n(CTRL+C si vous souhaitez stoper le programme)\n", getcwd(buffer, PATH_MAX));
+        printf("\nVous %dtes dans le dossier : %s\n(CTRL+C si vous souhaitez stopper le programme)\n", ê, getcwd(buffer, PATH_MAX));
         printf("\nSouhaitez vous : "BLUE "SUPPRIMER CERTAINS FICHIERS (0)"RESET" or "BLUE"NETTOYER LE DOSSIER (1) : "RESET);
         scanf("%d", &instruction);
         viderBuffer();
         
         if(instruction == 1)
         {
-            printf(RED"ATTENTION"RESET": Êtes vous sûre ? L'entiereté du dossier va-t-être supprimé (à l'exception des sous-dossiers). " BLUE "CONTINUER (0)" RESET " or" BLUE " RETOUR (1)"RESET " : ");
+            printf(RED"ATTENTION"RESET": %dtes vous s%dre ? L'entieret%d du dossier va-t-%dtre supprim%d (%d l'exception des sous-dossiers). " BLUE "CONTINUER (0)" RESET " or" BLUE " RETOUR (1)"RESET " : ", ê, û, é, ê, é, à);
             scanf("%d", &instruction);
             viderBuffer();
 
@@ -54,7 +54,7 @@ int main(int argc, char *argv[])
         else if(instruction == 0){
             instruction = 3;
 
-            printf("\nSouhaitez vous supprimé les fichiers par leur :"BLUE" NOM (0)"RESET" or"BLUE" EXTENSION (1)"RESET" : ");
+            printf("\nSouhaitez vous supprimer les fichiers par leur :"BLUE" NOM (0)"RESET" or"BLUE" EXTENSION (1)"RESET" : ");
             scanf("%d", &instruction);
             viderBuffer();
 
