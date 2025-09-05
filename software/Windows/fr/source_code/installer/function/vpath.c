@@ -1,6 +1,14 @@
 #include ".\..\header\installer.h"
 #define MAX_SETXPATH_LENGHT 1024
 
+void viderBuffer(void)
+{
+    int c;
+    while((c=getchar()) != EOF && c != '\n');
+
+}
+
+
 void errorr(char *msg)
 {
     printf("\nCODE ERREUR : ERRNO %d", errno);
