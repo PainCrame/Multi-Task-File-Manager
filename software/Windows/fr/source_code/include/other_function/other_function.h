@@ -4,5 +4,6 @@
 void viderBuffer(void);
 void stopRun(void);
 int error(int error_code, char *file_name);
+void allocation_error(void);
 
 #endif

@@ -1,5 +1,13 @@
 #include ".\..\..\include.h"
 
+void allocation_error(void)
+{
+    fprintf(stderr, "Erreur d'allocation de mémoire");
+
+    exit(EXIT_FAILURE);
+}
+
+
 void viderBuffer(void)
 {
     int c;
