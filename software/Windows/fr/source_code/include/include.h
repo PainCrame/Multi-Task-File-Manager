@@ -22,4 +22,7 @@
 #define ù 151
 #define î 206
 
+#define __UPER_CASE__ -32
+#define __LOWER_CASE__ -32
+
 #endif
