@@ -2,7 +2,7 @@
 
 - Si vous êtes du genre peu ordonné, ce logiciel est fait pour vous :  
  Il vous permet de :  
-  - Trier des dossierts à votre place  
+  - Trier des dossiers à votre place  
   - Eventuellement les viders  
   - Par exemple supprimer tous les pdf dans votre dossier Téléchargements  
   
