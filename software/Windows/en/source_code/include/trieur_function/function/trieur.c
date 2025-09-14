@@ -2,7 +2,7 @@
 
 void errorr(char *msg)
 {
-    printf("\nCODE ERREUR : ERRNO %d", errno);
+    printf("\nERROR CODE : ERRNO %d", errno);
     perror(msg);
     getchar();
     exit(EXIT_FAILURE);
@@ -104,7 +104,7 @@ void move(char* file_name)
         }
         else
         {
-            fprintf(stderr, "Erreur d'ouverture du fichier %s", file_name);
+            fprintf(stderr, "Failed to open the file %s", file_name);
             exit(EXIT_FAILURE);
         }
     }
@@ -114,7 +114,6 @@ void move(char* file_name)
         free(extension);
         free(folder_name);
         move(file_name);
-        printf("%s", file_name);
         return;
     }
 }
@@ -126,7 +125,7 @@ void trier(void)
 
     if((d = opendir(".")) == NULL)
     {
-        errorr("Erreur d'ouverture du dossier courrant");
+        errorr("Failed to open the current folder");
         exit(EXIT_FAILURE);
     }
 
@@ -140,13 +139,4 @@ void trier(void)
     }
 
     return;
-}
-
-int main(void)
-{
-    chdir("C:\\Users\\Hugo C\\Downloads");
-
-    trier();
-
-    return 0;
 }

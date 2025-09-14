@@ -3,32 +3,34 @@
 int main(int argc, char *argv[])
 {
     DIR *d;
-    if(!(argc == 2 && (d = opendir(argv[1]))))
+    if(!(argc == 2))
     {
-        printf("%d", argc);
-        printf("\nUse command like : mtfm <path_of_the_folder_you_want_to_clean>.\nFor example : \"mtfm C:\\User\\Dekstop\\Downloads\"");
+        fprintf(stderr, "\nUse command like : mtfm <path_of_the_folder_you_want_to_clean>.\nFor example : \"mtfm C:\\Users\\<Your_Name>\\Downloads\"");
         getchar();
         exit(EXIT_FAILURE);
     }
-    closedir(d);
+    if((d = opendir(argv[1])) == NULL)
+    {
+        perror("Error in opening the folder, please try again\nERROR ");
+        getchar();
+        exit(EXIT_FAILURE);
+    }
 
-    int c = chdir(argv[1]);
-    if(! c==0)
+    if(chdir(argv[1]) != 0)
     {
         perror("Error in opening the folder, please try again\nError ");
         getchar();
         exit(EXIT_FAILURE);
     }
 
-    
+    printf("\nWelcome to the uninstaller program!\n");
     while(1)
     {
         int instruction;
         char buffer[PATH_MAX];
 
-        printf("\nWelcome to the uninstaller program!\n");
-        printf("\nYou're in the folder : %s\n(CTRL+C if you want to exit)\n", getcwd(buffer, PATH_MAX));
-        printf("\nDo you want to : "BLUE "DELETE SPECIFICS FILES (0)"RESET" or "BLUE"CLEAR THE FOLDER (1) : "RESET);
+        printf("\nYou're in the folder : %s\n(CTRL+C if you want to exit)\n", getcwd(buffer, PATH_MAX));    
+        printf("\nSouhaitez vous : "BLUE "DELETE SPECIFICS FILES (0)"RESET" or "BLUE"CLEAR THE FOLDER (1) "RESET" or "BLUE"SORT THE FOLDER (2) : "RESET);
         scanf("%d", &instruction);
         viderBuffer();
         
@@ -51,7 +53,9 @@ int main(int argc, char *argv[])
             }
             return 1;
         }
-        else if(instruction == 0){
+
+        else if(instruction == 0)
+        {
             instruction = 3;
 
             printf("\nDo you want uninstall files by :"BLUE" NAMES (0)"RESET" or"BLUE" EXTENSION (1)"RESET" : ");
@@ -71,7 +75,18 @@ int main(int argc, char *argv[])
                 error(2, NULL);
             }
         }
-        else{
+
+        else if(instruction == 2)
+        {
+            instruction = 3;
+
+            trier();
+
+            printf("\nLe dossier a %ct%c correctement tri%c !\n", é, é, é);
+        }
+
+        else
+        {
             error(2, NULL);
         }
     }

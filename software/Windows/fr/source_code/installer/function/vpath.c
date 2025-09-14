@@ -83,9 +83,9 @@ int make_program_dir(char *ProgramName, char *NewPath)
     else
     {
         closedir(d);
-        printf("\nLe dossier %s existe d%cj%c ou est inaccessible.", ProgramName, é, à);
-        printf("\nS'il vous pla%ct, v%crifiez s'il existe d%cj%c dans C:\\Programmes", î, é, é, à);
-        printf("\nS'il existe, s'il vous pla%ct supprimez le.", î);
+        fprintf(stderr, "\nLe dossier %s existe d%cj%c ou est inaccessible.", ProgramName, é, à);
+        fprintf(stderr, "\nS'il vous pla%ct, v%crifiez s'il existe d%cj%c dans C:\\Programmes", î, é, é, à);
+        fprintf(stderr, "\nS'il existe, s'il vous pla%ct supprimez le.", î);
         getchar();
         exit(EXIT_FAILURE);
     }

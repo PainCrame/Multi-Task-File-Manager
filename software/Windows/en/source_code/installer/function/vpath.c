@@ -1,9 +1,17 @@
 #include ".\..\header\installer.h"
 #define MAX_SETXPATH_LENGHT 1024
 
+void viderBuffer(void)
+{
+    int c;
+    while((c=getchar()) != EOF && c != '\n');
+
+}
+
+
 void errorr(char *msg)
 {
-    printf("\nError code: ERRNO %d", errno);
+    fprintf(stderr,"\nError code: ERRNO %d", errno);
     perror(msg);
     getchar();
     exit(EXIT_FAILURE);
@@ -74,10 +82,9 @@ int make_program_dir(char *ProgramName, char *NewPath)
     }
     else
     {
-        closedir(d);
-        printf("\nThe folder %s already exists or is inaccessible.", ProgramName);
-        printf("\nPlease check if it exists in C:\\Program Files");
-        printf("\nIf so, please delete it.");
+        fprintf(stderr, "\nThe folder %s already exists or is inaccessible.", ProgramName);
+        fprintf(stderr, "\nPlease check if it exists in C:\\Program Files");
+        fprintf(stderr, "\nIf so, please delete it.");
         getchar();
         exit(EXIT_FAILURE);
     }
@@ -101,7 +108,7 @@ int move_in_VPATH(char *ProgramName, char *ProgramPath, char *file_name)
     
     if(!SETXPATH_LENGHT_GOOD(NewPath))
     {
-        printf("\nYour PATH environment variable is too full to complete this operation automatically.\nPlease do this manually by adding the following to your user environment variable named PATH: C:\\Program Files\\<your_folder_name> (suggested: GestionnaireDeFichierMT)\\bin.\nIf you need help, see: https://www.malekal.com/variables-environnement-windows/#Modifier_les_variables_drsquoenvironnement ");
+        fprintf(stderr, "\nYour PATH environment variable is too full to complete this operation automatically.\nPlease do this manually by adding the following to your user environment variable named PATH: C:\\Program Files\\<your_folder_name> (suggested: GestionnaireDeFichierMT)\\bin.\nIf you need help, see: https://www.malekal.com/variables-environnement-windows/#Modifier_les_variables_drsquoenvironnement ");
         getchar();
         exit(EXIT_FAILURE);
     }

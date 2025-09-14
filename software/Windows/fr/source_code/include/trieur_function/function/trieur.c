@@ -1,7 +1,5 @@
 #include ".\..\..\include.h"
 
-
-
 void errorr(char *msg)
 {
     printf("\nCODE ERREUR : ERRNO %d", errno);

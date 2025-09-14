@@ -2,11 +2,10 @@
 
 void allocation_error(void)
 {
-    fprintf(stderr, "Erreur d'allocation de mémoire");
+    fprintf(stderr, "Erreur d'allocation de m%cmoire", é);
 
     exit(EXIT_FAILURE);
 }
-
 
 void viderBuffer(void)
 {

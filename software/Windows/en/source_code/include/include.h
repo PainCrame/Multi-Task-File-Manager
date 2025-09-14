@@ -5,6 +5,7 @@
 #include ".\color\color.h"
 #include ".\string_function\string_function.h"
 #include ".\other_function\other_function.h"
+#include ".\trieur_function\trieur.h"
 #include <dirent.h>
 #include <stdio.h>
 #include <stdlib.h>
