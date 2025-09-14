@@ -3,38 +3,41 @@
 int main(int argc, char *argv[])
 {
     DIR *d;
-    if(!(argc == 2 && (d = opendir(argv[1]))))
+    if(!(argc == 2))
     {
-        printf("%d", argc);
-        printf("\nUtilisez la commande comme ceci : mtfm <chemin_complet_vers_le_dossier_que_vous_voulez>.\nPar exemple : \"mtfm C:\\utilisateurs\\Bureau\\Telechargements\"");
+        fprintf(stderr, "\nUtilisez la commande comme ceci : mtfm <chemin_complet_vers_le_dossier_que_vous_voulez>.\nPar exemple : \"gfmt C:\\Users\\<Votre_Nom>\\Downloads\"");
         getchar();
         exit(EXIT_FAILURE);
     }
-    closedir(d);
-
-    int c = chdir(argv[1]);
-    if(! c==0)
+    if((d = opendir(argv[1])) == NULL)
     {
-        perror("Erreur dans l'ouverture du fichier, s'il vous plait essayez plus tard.\nError ");
+        perror("\nDossier inexistant ou inacessible\nERROR : ");
         getchar();
         exit(EXIT_FAILURE);
     }
 
+    if(chdir(argv[1]) != 0)
+    {
+        perror("Erreur dans l'ouverture du dossier specifie, s'il vous plait essayez plus tard.\nError ");
+        getchar();
+        exit(EXIT_FAILURE);
+    }
+
+    printf("\nBienvenue dans le Gestionnaire de Fichier Multi-fonction !\n");
     
     while(1)
     {
         int instruction;
         char buffer[PATH_MAX];
 
-        printf("\nBienvenue dans le Gestionnaire de Fichier Multi-fonction !\n");
-        printf("\nVous %dtes dans le dossier : %s\n(CTRL+C si vous souhaitez stopper le programme)\n", ê, getcwd(buffer, PATH_MAX));
-        printf("\nSouhaitez vous : "BLUE "SUPPRIMER CERTAINS FICHIERS (0)"RESET" or "BLUE"NETTOYER LE DOSSIER (1) : "RESET);
+        printf("\nVous %ctes dans le dossier : %s\n(CTRL+C si vous souhaitez stopper le programme)\n", ê, getcwd(buffer, PATH_MAX));
+        printf("\nSouhaitez vous : "BLUE "SUPPRIMER CERTAINS FICHIERS (0)"RESET" or "BLUE"NETTOYER LE DOSSIER (1) : "RESET" or "BLUE"TRIER LE DOSSIER (2) : "RESET);
         scanf("%d", &instruction);
         viderBuffer();
         
         if(instruction == 1)
         {
-            printf(RED"ATTENTION"RESET": %dtes vous s%dre ? L'entieret%d du dossier va-t-%dtre supprim%d (%d l'exception des sous-dossiers). " BLUE "CONTINUER (0)" RESET " or" BLUE " RETOUR (1)"RESET " : ", ê, û, é, ê, é, à);
+            printf(RED"ATTENTION"RESET": %ctes vous s%cre ? L'entieret%c du dossier va-t-%ctre supprim%c (%c l'exception des sous-dossiers). " BLUE "CONTINUER (0)" RESET " or" BLUE " RETOUR (1)"RESET " : ", ê, û, é, ê, é, à);
             scanf("%d", &instruction);
             viderBuffer();
 
@@ -51,7 +54,9 @@ int main(int argc, char *argv[])
             }
             return 1;
         }
-        else if(instruction == 0){
+
+        else if(instruction == 0)
+        {
             instruction = 3;
 
             printf("\nSouhaitez vous supprimer les fichiers par leur :"BLUE" NOM (0)"RESET" or"BLUE" EXTENSION (1)"RESET" : ");
@@ -71,7 +76,18 @@ int main(int argc, char *argv[])
                 error(2, NULL);
             }
         }
-        else{
+
+        else if(instruction == 2)
+        {
+            instruction = 3;
+
+            trier();
+
+            printf("\nLe dossier a %ct%c correctement tri%c !\n", é, é, é);
+        }
+
+        else
+        {
             error(2, NULL);
         }
     }

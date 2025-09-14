@@ -14,12 +14,12 @@ void uninstall_extension(char *exe_name_path)
     printf("\n Entrez le nom des extensions : ");
     fgets(instruction, sizeof(instruction), stdin);
 
-    printf("Souhaitez vous conserver tout de m%dme queques fichiers ?"BLUE" OUI (0)"RESET BLUE" or NON (1) "RESET, ê);
+    printf("Souhaitez vous conserver tout de m%cme queques fichiers ?"BLUE" OUI (0)"RESET BLUE" or NON (1) "RESET, ê);
     scanf("%d", &decision);
     viderBuffer();
 
     if(decision==0){
-        printf("Entrez"BOLDWHITE" les noms complets"RESET" des fichiers (s%dpar%d par des "BOLDWHITE"virgules"RESET") : ", é, é);
+        printf("Entrez"BOLDWHITE" les noms complets"RESET" des fichiers (s%cpar%c par des "BOLDWHITE"virgules"RESET") : ", é, é);
 
         fgets(exception, sizeof(exception), stdin);
     }

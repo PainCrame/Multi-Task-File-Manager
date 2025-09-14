@@ -2,7 +2,7 @@
 
 int main(int argc, char *argv[])
 {
-    printf("Avez vous d%dplac%d un des fichiers/dossiers, que vous venez de t%dl%dcharger ? (o/n) ", é, é, é, é);
+    printf("Avez vous d%cplac%c un des fichiers/dossiers, que vous venez de t%cl%ccharger ? (o/n) ", é, é, é, é);
 
     char *answer = malloc(sizeof(char) + 1);
     char *CodePath = malloc(sizeof(char)*300);
@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
     if(strcmp(answer, "o") == 0)
     {
         free(answer);
-        printf("\nEntrez le chemin complet vers le dossier \"source_code\" (%da ressemble %d \"C:\\Utilisateur\\<votre_nom>\\T%dl%dchargements\\source_code\"): ", ç, à, é, é);
+        printf("\nEntrez le chemin complet vers le dossier \"source_code\" (%ca ressemble %c \"C:\\Utilisateur\\<votre_nom>\\T%cl%cchargements\\source_code\"): ", ç, à, é, é);
         fgets(CodePath, sizeof(CodePath), stdin);
         viderBuffer();
         CodePath_cpy = strdup(CodePath);

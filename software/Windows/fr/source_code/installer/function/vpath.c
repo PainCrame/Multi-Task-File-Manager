@@ -11,7 +11,7 @@ void viderBuffer(void)
 
 void errorr(char *msg)
 {
-    printf("\nCODE ERREUR : ERRNO %d", errno);
+    fprintf(stderr, "\nCODE ERREUR : ERRNO %d", errno);
     perror(msg);
     getchar();
     exit(EXIT_FAILURE);
@@ -24,7 +24,7 @@ int SETXPATH_LENGHT_GOOD(char *NewPath)
 
 int vpath_setx(char *ProgramName, char *NewPath)
 {
-    printf("\nFichier %s d%dplac%d dans %s!", ProgramName, é, é, NewPath);
+    printf("\nFichier %s d%cplac%c dans %s!", ProgramName, é, é, NewPath);
     char *instruction = malloc(strlen("setx Path \"%Path%;") + 1 + strlen(NewPath) + 1 + strlen("\"") + 1);
     strcpy(instruction, "setx Path \"%Path%;");
     strcat(instruction, NewPath);
@@ -35,7 +35,7 @@ int vpath_setx(char *ProgramName, char *NewPath)
 
     if(c == 0)
     {
-        printf("\nLe logiciel a correctement %dt%d t%dl%dcharg%d!", é, é, é, é, é);
+        printf("\nLe logiciel a correctement %ct%c t%cl%ccharg%c!", é, é, é, é, é);
         viderBuffer();
         return 1;
     }
@@ -48,14 +48,14 @@ int vpath_setx(char *ProgramName, char *NewPath)
 
 int make_bin_dir(char *NewPath)
 {
-    printf("\nCr%dation du dossier \\bin ...", é);
+    printf("\nCr%cation du dossier \\bin ...", é);
     strcat(NewPath, "\\bin");
 
     int c = mkdir(NewPath);
 
     if (c == 0)
     {
-        printf("\nDossier \\bin correctement cr%d%d", é, é);
+        printf("\nDossier \\bin correctement cr%c%c", é, é);
         return 1;
     }
     else
@@ -75,7 +75,7 @@ int make_program_dir(char *ProgramName, char *NewPath)
     DIR *d = opendir(NewPath);
     if (!d)
     {
-        printf("\nCr%dation du dossier programme \\%s...", é, ProgramName);
+        printf("\nCr%cation du dossier programme \\%s...", é, ProgramName);
 
         c = mkdir(instruction);
         free(instruction);
@@ -83,16 +83,16 @@ int make_program_dir(char *ProgramName, char *NewPath)
     else
     {
         closedir(d);
-        printf("\nLe dossier %s existe d%dj%d ou est inaccessible.", ProgramName, é, à);
-        printf("\nS'il vous pla%dt, v%drifiez s'il existe d%dj%d dans C:\\Programmes", î, é, é, à);
-        printf("\nS'il existe, s'il vous pla%dt supprimez le.", î);
+        printf("\nLe dossier %s existe d%cj%c ou est inaccessible.", ProgramName, é, à);
+        printf("\nS'il vous pla%ct, v%crifiez s'il existe d%cj%c dans C:\\Programmes", î, é, é, à);
+        printf("\nS'il existe, s'il vous pla%ct supprimez le.", î);
         getchar();
         exit(EXIT_FAILURE);
     }
 
     if (c == 0)
     {
-        printf("\nLe dossier \\%s a été correctement cr%d%d", ProgramName, é, é);
+        printf("\nLe dossier \\%s a été correctement cr%c%c", ProgramName, é, é);
         return make_bin_dir(NewPath);
     }
     else
@@ -109,7 +109,7 @@ int move_in_VPATH(char *ProgramName, char *ProgramPath, char *file_name)
     
     if(!SETXPATH_LENGHT_GOOD(NewPath))
     {
-        printf("\nVotre variable d'envrionnement PATH est trop charg%d pour que cette op%dration sois r%dalis%d de mani%dre automatique.\nS'il vous pla%dt, r%dalisez cette action de façon manuelle en ajoutant le dossier suivant %d votre variable d'environnement utilisateur nomm%d PATH. Le chemin : C:\\Program Files\\<your_folder_name> (si vous n'avez rien modifi%d c'est : GestionnaireDeFichierMT)\\bin.\nSi vous avez besoin d'aide, consultez sur google : https://www.malekal.com/variables-environnement-windows/#Modifier_les_variables_drsquoenvironnement ", é, é, é, é, è, î, é, à, é, é);
+        printf("\nVotre variable d'envrionnement PATH est trop charg%c pour que cette op%cration sois r%calis%c de mani%cre automatique.\nS'il vous pla%ct, r%calisez cette action de façon manuelle en ajoutant le dossier suivant %c votre variable d'environnement utilisateur nomm%c PATH. Le chemin : C:\\Program Files\\<your_folder_name> (si vous n'avez rien modifi%c c'est : GestionnaireDeFichierMT)\\bin.\nSi vous avez besoin d'aide, consultez sur google : https://www.malekal.com/variables-environnement-windows/#Modifier_les_variables_drsquoenvironnement ", é, é, é, é, è, î, é, à, é, é);
         getchar();
         exit(EXIT_FAILURE);
     }
@@ -131,7 +131,7 @@ int move_in_VPATH(char *ProgramName, char *ProgramPath, char *file_name)
         }
         else
         {
-            errorr("\nLe fichier n'a pas pu %dtre d%dplac%d dans le dossier.");
+            errorr("\nLe fichier n'a pas pu %ctre d%cplac%c dans le dossier.");
         }
     }
     else

@@ -32,27 +32,27 @@ int error(int error_code, char *file_name)
     case 1:
     {
     // Si le fichier n'existe pas, affiche un message d'erreur et quitte
-        printf(RED"\nERREUR : Le fichier"RESET WHITE" %s" RESET RED " n'existe pas"RESET, file_name);
-        printf(YELLOW"\nFin de la supression."RESET);
-        printf("\nS'il vous pla%dt, v%drifiez si le fichier existe, ou n'est pas d%dj%d ouvert, puis r%dessayez.\n", î, é, é, à, é); 
+        fprintf(stderr, RED"\nERREUR : Le fichier"RESET WHITE" %s" RESET RED " n'existe pas"RESET, file_name);
+        fprintf(stderr, YELLOW"\nFin de la supression."RESET);
+        fprintf(stderr, "\nS'il vous pla%ct, v%crifiez si le fichier existe, ou n'est pas d%cj%c ouvert, puis r%cessayez.\n", î, é, é, à, é); 
         stopRun();
     }
 
     case 2:
     {
-        printf( "\n"RED"ERREUR : Option invalide."RESET" S'il vous pla%dt, r%dessayez.\n", î, é);
+        fprintf(stderr, "\n"RED"ERREUR : Option invalide."RESET" S'il vous pla%ct, r%cessayez.\n", î, é);
         stopRun();
     }
 
     case 3:
     {
-        printf(RED"ERREUR : L'ouverture du dossier est impossible"RESET);
+        fprintf(stderr, RED"ERREUR : L'ouverture du dossier est impossible"RESET);
         stopRun();
     }
 
     case 4:
     {
-        printf(RED"ERREUR : L'ouverture du dossier est impossible"RESET);
+        fprintf(stderr, RED"ERREUR : L'ouverture du dossier est impossible"RESET);
         stopRun();
     }
     }
