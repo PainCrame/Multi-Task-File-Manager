@@ -8,7 +8,6 @@ void viderBuffer(void)
 
 }
 
-
 void errorr(char *msg)
 {
     fprintf(stderr, "\nCODE ERREUR : ERRNO %d", errno);
@@ -123,7 +122,7 @@ int move_in_VPATH(char *ProgramName, char *ProgramPath, char *file_name)
 
         int move_file = rename(ProgramPath, Complete_NewPath);
         free(Complete_NewPath);
-        
+
         if(move_file == 0)
         {
             if(vpath_setx(ProgramName, NewPath))
