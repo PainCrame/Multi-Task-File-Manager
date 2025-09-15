@@ -42,7 +42,7 @@ Installation simple :
 -Lancez l’installer en tant qu’administrateur (maj + clic gauche).  
 -Le logiciel est installé ! Lancez un terminal et exécutez la commande ```gfmt hello```  
   
-*Une version plus simple du téléchargement est en cour de développement, ainsi qu’un désinstalleur..*  
+*Un desinstalleur est en cour de développement...*  
 
 
 ## 💭 Feedback and Contributing  
