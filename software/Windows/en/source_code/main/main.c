@@ -9,6 +9,14 @@ int main(int argc, char *argv[])
         getchar();
         exit(EXIT_FAILURE);
     }
+
+    if(strcmp(argv[1], "hello") == 0)
+    {
+        printf("\nHello from the Multi-Task File Manager !\n");
+        getchar();
+        exit(EXIT_SUCCESS);
+    }
+
     if((d = opendir(argv[1])) == NULL)
     {
         perror("Error in opening the folder, please try again\nERROR ");

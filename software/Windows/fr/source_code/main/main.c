@@ -9,6 +9,14 @@ int main(int argc, char *argv[])
         getchar();
         exit(EXIT_FAILURE);
     }
+
+    if(strcmp(argv[1], "hello") == 0)
+    {
+        printf("\nBien le bonjour depuis le Gestionnaire de Fichiers Multi-fonction !\n");
+        getchar();
+        exit(EXIT_SUCCESS);
+    }
+
     if((d = opendir(argv[1])) == NULL)
     {
         perror("\nDossier inexistant ou inacessible\nERROR : ");
@@ -22,6 +30,7 @@ int main(int argc, char *argv[])
         getchar();
         exit(EXIT_FAILURE);
     }
+
 
     printf("\nBienvenue dans le Gestionnaire de Fichier Multi-fonction !\n");
     

@@ -8,7 +8,6 @@ void viderBuffer(void)
 
 }
 
-
 void errorr(char *msg)
 {
     fprintf(stderr,"\nError code: ERRNO %d", errno);
@@ -82,6 +81,7 @@ int make_program_dir(char *ProgramName, char *NewPath)
     }
     else
     {
+        closedir(d);
         fprintf(stderr, "\nThe folder %s already exists or is inaccessible.", ProgramName);
         fprintf(stderr, "\nPlease check if it exists in C:\\Program Files");
         fprintf(stderr, "\nIf so, please delete it.");
@@ -122,7 +122,7 @@ int move_in_VPATH(char *ProgramName, char *ProgramPath, char *file_name)
 
         int move_file = rename(ProgramPath, Complete_NewPath);
         free(Complete_NewPath);
-        
+
         if(move_file == 0)
         {
             if(vpath_setx(ProgramName, NewPath))
