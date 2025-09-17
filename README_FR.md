@@ -20,13 +20,11 @@ Ca serait vraiment utile d’avoir un logiciel pour le faire à ma place ! Et j
 
 ## 🚀 Usage
 
-*Show off what your software looks like in action! Try to limit it to one-liners if possible and don't delve into API specifics.*
-
 ```source.powershell
 >>> gfmt « C:\Users\Hello\Downloads »
 >>> Bienvenue dans le Gestionnaire de Fichier Multi-fonction !
 
-	Vous êtes dans le dossier : C:\Users\Hugo C
+	Vous êtes dans le dossier : C:\Users\
 	(CTRL+C si vous souhaitez stopper le programme)
 
 	Souhaitez vous : SUPPRIMER CERTAINS FICHIERS (0) ou NETTOYER LE DOSSIER 	(1) :  ou TRIER LE DOSSIER (2) :
@@ -40,7 +38,7 @@ Installation simple :
 -Téléchargez le fichier correspondant à votre situation (Par exemple sur Windows en français, rendez vous dans le dossier en amont software\Windows\fr\bin et téléchargez le fichier exe)  
 -Téléchargez l’installeur correspondant ici (installer\Windows\fr)    
 -Lancez l’installer en tant qu’administrateur (maj + clic gauche).  
--Le logiciel est installé ! Lancez un terminal et exécutez la commande ```gfmt hello```  
+-Le logiciel est installé ! Lancez un terminal et exécutez la commande ```gfmt --hello```  
   
 *Un desinstalleur est en cour de développement...*  
 
