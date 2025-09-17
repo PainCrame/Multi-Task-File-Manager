@@ -2,20 +2,10 @@
 
 int main(int argc, char *argv[])
 {
-    DIR *d;
-    if(!(argc == 2))
-    {
-        fprintf(stderr, "\nUtilisez la commande comme ceci : mtfm <chemin_complet_vers_le_dossier_que_vous_voulez>.\nPar exemple : \"gfmt C:\\Users\\<Votre_Nom>\\Downloads\"");
-        getchar();
-        exit(EXIT_FAILURE);
-    }
 
-    if(strcmp(argv[1], "hello") == 0)
-    {
-        printf("\nBien le bonjour depuis le Gestionnaire de Fichiers Multi-fonction !\n");
-        getchar();
-        exit(EXIT_SUCCESS);
-    }
+    check_option(argc, argv);
+
+    DIR *d;
 
     if((d = opendir(argv[1])) == NULL)
     {
