@@ -39,12 +39,10 @@ Ca serait vraiment utile d’avoir un logiciel pour le faire à ma place ! Et j
 Installation simple : 
 -Téléchargez le fichier correspondant à votre situation (Par exemple sur Windows en français, rendez vous dans le dossier en amont software\Windows\fr\bin et téléchargez le fichier exe)  
 -Téléchargez l’installeur correspondant ici (installer\Windows\fr)    
--Créez un dossier source_code dans vos téléchargements.  
--Créez dans ce dernier un dossier bin, puis déplacez y le logiciel téléchargé.   
 -Lancez l’installer en tant qu’administrateur (maj + clic gauche).  
--Le logiciel est installé ! Lancez un terminal et exécutez la commande gfmt « <Chemin_vers_le_dossier> »  
+-Le logiciel est installé ! Lancez un terminal et exécutez la commande ```gfmt hello```  
   
-*Une version plus simple du téléchargement est en cour de développement, ainsi qu’un désinstalleur..*  
+*Un desinstalleur est en cour de développement...*  
 
 
 ## 💭 Feedback and Contributing  
