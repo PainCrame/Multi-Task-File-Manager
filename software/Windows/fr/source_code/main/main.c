@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
         char buffer[PATH_MAX];
 
         printf("\nVous %ctes dans le dossier : %s\n(CTRL+C si vous souhaitez stopper le programme)\n", ê, getcwd(buffer, PATH_MAX));
-        printf("\nSouhaitez vous : "BLUE "SUPPRIMER CERTAINS FICHIERS (0)"RESET" or "BLUE"NETTOYER LE DOSSIER (1) : "RESET" or "BLUE"TRIER LE DOSSIER (2) : "RESET);
+        printf("\nSouhaitez vous : "BLUE "SUPPRIMER CERTAINS FICHIERS (0)"RESET" ou "BLUE"NETTOYER LE DOSSIER (1) : "RESET" ou "BLUE"TRIER LE DOSSIER (2) : "RESET);
         scanf("%d", &instruction);
         viderBuffer();
         
