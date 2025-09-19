@@ -21,11 +21,11 @@ It would be really useful to have software to do it for me! And so here I am.
 ## 🚀 Usage
 
 ```source.powershell
->>> gfmt ‘C:\Users\Hello\Downloads’
+>>> mtfm ‘C:\Users\Hello\Downloads’
 >>> Welcome to the Multi-Function File Manager!
 
 	You are in the folder: C:\Users\
-    (CTRL+C if you want to stop the programme)
+    (CTRL+C if you want to stop the program)
 
     Would you like to: DELETE CERTAIN FILES (0) or CLEAN UP THE FOLDER     (1):  or SORT THE FOLDER (2):
 	
@@ -36,8 +36,8 @@ It would be really useful to have software to do it for me! And so here I am.
 ## ⬇️ Installation
 
 Simple installation:
--Download the file corresponding to your situation (for example, on Windows in French, go to the folder software\Windows\fr\bin and download the exe file)  
--Download the corresponding installer here (installer\Windows\fr)    
+-Download the file corresponding to your situation (for example, on Windows in English, go to the folder software\Windows\en\bin and download the exe file)  
+-Download the corresponding installer here (installer\Windows\en)    
 -Run the installer as an administrator (Shift + left click).  
 -The software is now installed! Open a terminal and run the command ```mtfm --hello```  
   
