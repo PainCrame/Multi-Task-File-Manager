@@ -2,6 +2,6 @@
 .gitignore
 empty.txt
 gcc_instruction.txt
-test.c
+developpement.c
 test.log
-a.exe
+test.exe
