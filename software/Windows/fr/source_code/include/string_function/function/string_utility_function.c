@@ -49,6 +49,9 @@ char *get_extension(char *file_name)
 {
 
   char *file_name_copy = malloc(strlen(file_name)+1);
+  if(file_name_copy == NULL)
+    tell_error(__ALLOCATION__ERROR__, NULL);
+
   strcpy(file_name_copy, file_name); 
 
   char const *separator = ".";
@@ -73,8 +76,7 @@ char *get_extension(char *file_name)
     return extension;
   }
   else{
-    free(file_name_copy);
-    return "ERROR";
+    tell_error(__ALLOCATION__ERROR__, NULL);
   }
 }
 
@@ -84,6 +86,9 @@ int get_nb_element_in_string(char *variable)
     char *token;
     int element_nb = 0;
     char *variable_copy = malloc(strlen(variable)+1);
+    if(variable_copy == NULL)
+        tell_error(__ALLOCATION__ERROR__, NULL);
+
     strcpy(variable_copy,variable);
 
     token = strtok(variable_copy, limit);
@@ -115,4 +120,56 @@ char *get_exe_name(char *path)
 
     char *exe_name = strdup(token_save);
     return exe_name;
+}
+
+char* toUperCase(char* text)
+{
+    char *returned_text;
+
+    if( (returned_text = malloc(strlen(text) + 1)) == NULL )//allocation
+        tell_error(__ALLOCATION__ERROR__, NULL);   
+
+    for(int i = 0 ; i < strlen(text) ; i++)
+    {
+        int ch = text[i];
+        
+        if(strchr("1234567890", ch) == NULL) //si y'a pas de nombre, met en majuscule
+        {
+            returned_text[i] = (char)((int)text[i] + __UPER_CASE__);
+            continue;
+        }
+        else //sinon touche pas
+        {
+            returned_text[i] = text[i];
+        }
+    }
+
+    returned_text[strlen(text)] = '\0'; //caractère de fin
+
+    return returned_text;
+}
+
+char* toLowerCase(char* text)
+{
+    char *returned_text;
+
+    if((returned_text = malloc(strlen(text) + 1)) == NULL)
+        tell_error(__ALLOCATION__ERROR__, NULL);
+
+
+    for(int i = 0 ; i < strlen(text) ; i++)
+    {
+        int ch = text[i];
+
+        if(strchr("1234567890", ch) == NULL)
+        {
+            returned_text[i] = (char)((int)text[i] + __LOWER_CASE__);
+            continue;
+        }
+            returned_text[i] = (int)text[i];
+    }
+
+    returned_text[strlen(text)] = '\0';
+
+    return returned_text;
 }

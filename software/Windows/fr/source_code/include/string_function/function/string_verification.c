@@ -4,8 +4,11 @@ int haveExtension(char *file_name, char **all_extension)
 {
     int i;
     char *file_name_cpy = strdup(file_name);
-    char *extension;
 
+    if(file_name_cpy == NULL)
+        tell_error(__ALLOCATION__ERROR__, NULL);
+
+    char *extension;
 
     for(i = 0 ; i < chararrlen(all_extension) ; i++)
     {
@@ -15,6 +18,7 @@ int haveExtension(char *file_name, char **all_extension)
             free(extension);
             return 1;
         }
+
         free(extension);
     }
 
@@ -42,6 +46,10 @@ int isException(char *file_name, char **all_exception)
 {
     int i;
     char *file_name_cpy = strdup(file_name);
+
+    if(file_name_cpy == NULL)
+        tell_error(__ALLOCATION__ERROR__, NULL);
+
     for(i = 0 ; i < chararrlen(all_exception) ; i++)
     {
     

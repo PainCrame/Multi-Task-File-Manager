@@ -1,12 +1,5 @@
 #include ".\..\..\include.h"
 
-void allocation_error(void)
-{
-    fprintf(stderr, "Erreur d'allocation de m%cmoire", é);
-
-    exit(EXIT_FAILURE);
-}
-
 void viderBuffer(void)
 {
     int c;
@@ -14,49 +7,69 @@ void viderBuffer(void)
 
 }
 
-void stopRun(void)
+void stopRun(int code)
 {
-    printf("Appuez sur ENTREE pour SORTIR");
+    printf("Appuyez sur ENTREE pour SORTIR");
     getchar();
-    exit(0);
+    exit(code);
 }
 
-int error(int error_code, char *file_name)
+int tell_error(int error_code, char *_Str)
 {
     switch (error_code)
     {
-    case 0:
-        break;
-    
-    case 1:
-    {
-    // Si le fichier n'existe pas, affiche un message d'erreur et quitte
-        fprintf(stderr, RED"\nERREUR : Le fichier"RESET WHITE" %s" RESET RED " n'existe pas"RESET, file_name);
-        fprintf(stderr, YELLOW"\nFin de la supression."RESET);
-        fprintf(stderr, "\nS'il vous pla%ct, v%crifiez si le fichier existe, ou n'est pas d%cj%c ouvert, puis r%cessayez.\n", î, é, é, à, é); 
-        stopRun();
-    }
-
-    case 2:
-    {
-        fprintf(stderr, "\n"RED"ERREUR : Option invalide."RESET" S'il vous pla%ct, r%cessayez.\n", î, é);
-        stopRun();
-    }
-
-    case 3:
-    {
-        fprintf(stderr, RED"ERREUR : L'ouverture du dossier est impossible"RESET);
-        stopRun();
-    }
-
-    case 4:
-    {
-        fprintf(stderr, RED"ERREUR : L'ouverture du dossier est impossible"RESET);
-        stopRun();
-    }
-    }
-
+        case 0:
+        {
+            fprintf(stderr, "Une erreur est survenue.\nCode erreur ERRNO : %d", errno);
+            perror("\nERRNO ");
+            fprintf(stderr, "\nLancer le programme en tant qu'administrateur peut r%csoudre lr probl%cme.", é, è);
+            stopRun(EXIT_FAILURE);
+        } 
         
+        case __FILE__OPENNING__ERROR__:
+        {
+            fprintf(stderr, RED"\nERREUR : Le fichier"RESET WHITE" %s" RESET RED " n'existe pas"RESET, _Str);
+            fprintf(stderr, YELLOW"\nFin de la supression."RESET);
+            fprintf(stderr, "\nS'il vous pla%ct, v%crifiez si le fichier existe, ou n'est pas d%cj%c ouvert, puis r%cessayez.\n", î, é, é, à, é);
+            perror("ERROR "); 
+            stopRun(EXIT_FAILURE);
+        }
+
+        case __INVALID__OPTIONN__:
+        {
+            fprintf(stderr, "\n"RED"ERREUR : Option invalide."RESET" S'il vous pla%ct, r%cessayez.\n", î, é);
+            perror("ERROR "); 
+            stopRun(EXIT_FAILURE);
+        }
+
+        case __FOLDER__OPENNING__ERROR__:
+        {
+            fprintf(stderr, RED"ERREUR : L'ouverture du dossier est impossible"RESET);
+            perror("ERROR "); 
+            stopRun(EXIT_FAILURE);
+        }
+
+        case __ARGUMENT__ERROR__:
+        {
+            fprintf(stderr, "Arguments d'appels insufisant.\nPour plus d'aide, utiliser \"gfmt --help\"");
+            perror("ERROR "); 
+            stopRun(EXIT_FAILURE);
+        }
+
+        case __ALLOCATION__ERROR__:
+        {
+            fprintf(stderr, "Erreur d'allocation de m%cmoire", é);
+            perror("ERROR "); 
+            stopRun(EXIT_FAILURE);
+        }
+
+        case __PATH__LENGTH__ERROR__:
+        {
+            fprintf(stderr, "\nVotre variable d'envrionnement PATH est trop charg%c pour que cette op%cration sois r%calis%c de mani%cre automatique.\nS'il vous pla%ct, r%calisez cette action de façon manuelle en ajoutant le dossier suivant %c votre variable d'environnement utilisateur nomm%c PATH. Le chemin : C:\\Program Files\\<your_folder_name> (si vous n'avez rien modifi%c c'est : GestionnaireDeFichierMT)\\bin.\nSi vous avez besoin d'aide, consultez sur google : https://www.malekal.com/variables-environnement-windows/#Modifier_les_variables_drsquoenvironnement ", é, é, é, é, è, î, é, à, é, é);
+            stopRun(EXIT_FAILURE);
+        }
+
+    }
 
     return 1;
 }

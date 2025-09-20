@@ -16,9 +16,7 @@ int main(int argc, char *argv[])
 
     if(chdir(argv[1]) != 0)
     {
-        perror("Erreur dans l'ouverture du dossier specifie, s'il vous plait essayez plus tard.\nError ");
-        getchar();
-        exit(EXIT_FAILURE);
+        tell_error(__FOLDER__OPENNING__ERROR__, NULL);
     }
 
 
@@ -49,7 +47,7 @@ int main(int argc, char *argv[])
                 continue;
                 
             }else{
-                error(2, NULL);
+                tell_error(__INVALID__OPTIONN__, NULL);
             }
             return 1;
         }
@@ -72,7 +70,7 @@ int main(int argc, char *argv[])
             }
             else
             {
-                error(2, NULL);
+                tell_error(__INVALID__OPTIONN__, NULL);
             }
         }
 
@@ -87,7 +85,7 @@ int main(int argc, char *argv[])
 
         else
         {
-            error(2, NULL);
+            tell_error(__INVALID__OPTIONN__, NULL);
         }
     }
 

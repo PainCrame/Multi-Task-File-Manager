@@ -25,5 +25,11 @@
 
 #define __UPER_CASE__ -32
 #define __LOWER_CASE__ -32
+#define __FILE__OPENNING__ERROR__ 1
+#define __INVALID__OPTIONN__ 2
+#define __FOLDER__OPENNING__ERROR__ 3
+#define __ARGUMENT__ERROR__ 4
+#define __ALLOCATION__ERROR__ 5
+#define __PATH__LENGTH__ERROR__ 6
 
 #endif

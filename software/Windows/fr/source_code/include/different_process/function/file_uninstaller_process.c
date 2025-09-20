@@ -9,7 +9,7 @@ void desinstall(char *file_name)
     if(file == NULL)
     {
         if(!isFolder(file_name)) //si l'ouverture du fichier échoue, vérifie d'abord si c'est parce que il est un dossier
-            error(1, file_name);
+            tell_error(__FILE__OPENNING__ERROR__, file_name);
         else{
             return;
         }
@@ -37,7 +37,7 @@ void process_uninstall_file(void)
     instruction[strcspn(instruction, "\n")] = '\0';
 
     if(instruction == NULL)
-        error(4, NULL);
+        tell_error(0, NULL);
 
     // Initialise les delimiteurs Tokenise la chaîne d'entrée pour extraire les noms de fichiers 
     const char *s = " ,;/";
@@ -54,6 +54,6 @@ void process_uninstall_file(void)
     }
 
     printf("\nFait !\n");
-    stopRun();
+    stopRun(EXIT_SUCCESS);
 
 }
