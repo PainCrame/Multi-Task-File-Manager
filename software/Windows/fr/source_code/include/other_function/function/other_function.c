@@ -2,9 +2,8 @@
 
 void viderBuffer(void)
 {
-    int c;
-    while((c=getchar()) != EOF && c != '\n');
-
+    int c = 0;
+    while ((c = getchar()) != '\n' && c != EOF);
 }
 
 void stopRun(int code)

@@ -2,43 +2,32 @@
 
 int main(int argc, char *argv[])
 {
+
+    check_option(argc, argv);
+
     DIR *d;
-    if(!(argc == 2))
-    {
-        fprintf(stderr, "\nUse command like : mtfm <path_of_the_folder_you_want_to_clean>.\nFor example : \"mtfm C:\\Users\\<Your_Name>\\Downloads\"");
-        getchar();
-        exit(EXIT_FAILURE);
-    }
 
-    if(strcmp(argv[1], "hello") == 0)
+        if((d = opendir(argv[1])) == NULL)
     {
-        printf("\nHello from the Multi-Task File Manager !\n");
-        getchar();
-        exit(EXIT_SUCCESS);
-    }
-
-    if((d = opendir(argv[1])) == NULL)
-    {
-        perror("Error in opening the folder, please try again\nERROR ");
+        perror("\nFolder does not exist or is inaccessible\nERROR : ");
         getchar();
         exit(EXIT_FAILURE);
     }
 
     if(chdir(argv[1]) != 0)
     {
-        perror("Error in opening the folder, please try again\nError ");
-        getchar();
-        exit(EXIT_FAILURE);
+        tell_error(__FOLDER__OPENNING__ERROR__, NULL);
     }
 
     printf("\nWelcome to the uninstaller program!\n");
+    
     while(1)
     {
         int instruction;
         char buffer[PATH_MAX];
 
         printf("\nYou're in the folder : %s\n(CTRL+C if you want to exit)\n", getcwd(buffer, PATH_MAX));    
-        printf("\nSouhaitez vous : "BLUE "DELETE SPECIFICS FILES (0)"RESET" or "BLUE"CLEAR THE FOLDER (1) "RESET" or "BLUE"SORT THE FOLDER (2) : "RESET);
+        printf("\nWould you like to : "BLUE "DELETE SPECIFICS FILES (0)"RESET" or "BLUE"CLEAR THE FOLDER (1) "RESET" or "BLUE"SORT THE FOLDER (2) : "RESET);
         scanf("%d", &instruction);
         viderBuffer();
         
@@ -57,7 +46,7 @@ int main(int argc, char *argv[])
                 continue;
                 
             }else{
-                error(2, NULL);
+                tell_error(__INVALID__OPTIONN__, NULL);
             }
             return 1;
         }
@@ -80,7 +69,7 @@ int main(int argc, char *argv[])
             }
             else
             {
-                error(2, NULL);
+                tell_error(__INVALID__OPTIONN__, NULL);
             }
         }
 
@@ -90,12 +79,12 @@ int main(int argc, char *argv[])
 
             trier();
 
-            printf("\nLe dossier a %ct%c correctement tri%c !\n", é, é, é);
+            printf("\nThe file has been sorted correctly.");
         }
 
         else
         {
-            error(2, NULL);
+            tell_error(__INVALID__OPTIONN__, NULL);
         }
     }
 

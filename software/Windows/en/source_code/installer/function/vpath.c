@@ -1,21 +1,6 @@
 #include ".\..\header\installer.h"
 #define MAX_SETXPATH_LENGHT 1024
 
-void viderBuffer(void)
-{
-    int c;
-    while((c=getchar()) != EOF && c != '\n');
-
-}
-
-void errorr(char *msg)
-{
-    fprintf(stderr,"\nError code: ERRNO %d", errno);
-    perror(msg);
-    getchar();
-    exit(EXIT_FAILURE);
-}
-
 int SETXPATH_LENGHT_GOOD(char *NewPath)
 {
     return strlen("setx Path \"%%Path%%;") + strlen(NewPath) + strlen("\\bin") + strlen(getenv("Path")) < MAX_SETXPATH_LENGHT;
@@ -25,6 +10,10 @@ int vpath_setx(char *ProgramName, char *NewPath)
 {
     printf("\nFile %s moved to %s!", ProgramName, NewPath);
     char *instruction = malloc(strlen("setx Path \"%Path%;") + 1 + strlen(NewPath) + 1 + strlen("\"") + 1);
+    
+    if(instruction == NULL)
+        tell_error(__ALLOCATION__ERROR__, NULL);
+    
     strcpy(instruction, "setx Path \"%Path%;");
     strcat(instruction, NewPath);
     strcat(instruction, "\"");
@@ -40,7 +29,7 @@ int vpath_setx(char *ProgramName, char *NewPath)
     }
     else
     {
-        errorr("\nAn error has occurred");
+        tell_error(0, NULL);
         return 0;
     }
 }
@@ -59,7 +48,7 @@ int make_bin_dir(char *NewPath)
     }
     else
     {
-        errorr("\n\\bin folder could not be created");
+        tell_error(0, NULL);
         return 0;
     } 
 }
@@ -69,9 +58,15 @@ int make_program_dir(char *ProgramName, char *NewPath)
     int c;
 
     char *instruction = malloc(strlen("C:\\Program Files\\") + 1 + strlen(ProgramName) + 1);
+    
+    if(instruction == NULL)
+        tell_error(__ALLOCATION__ERROR__, NULL);
+    
     strcpy(instruction, "C:\\Program Files\\");
     strcat(instruction, ProgramName);
+
     DIR *d = opendir(NewPath);
+
     if (!d)
     {
         printf("\nCreating program folder \\%s...", ProgramName);
@@ -81,10 +76,9 @@ int make_program_dir(char *ProgramName, char *NewPath)
     }
     else
     {
-        closedir(d);
-        fprintf(stderr, "\nThe folder %s already exists or is inaccessible.", ProgramName);
-        fprintf(stderr, "\nPlease check if it exists in C:\\Program Files");
-        fprintf(stderr, "\nIf so, please delete it.");
+        fprintf(stderr, "\nThe %s folder already exist or is inaccessible.", ProgramName, é, à);
+        fprintf(stderr, "\nCheck whether it exists in the folder C:\\Programs");
+        fprintf(stderr, "\nif it exists, please delete it.");
         getchar();
         exit(EXIT_FAILURE);
     }
@@ -107,15 +101,16 @@ int move_in_VPATH(char *ProgramName, char *ProgramPath, char *file_name)
     strcat(NewPath, ProgramName);
     
     if(!SETXPATH_LENGHT_GOOD(NewPath))
-    {
-        fprintf(stderr, "\nYour PATH environment variable is too full to complete this operation automatically.\nPlease do this manually by adding the following to your user environment variable named PATH: C:\\Program Files\\<your_folder_name> (suggested: GestionnaireDeFichierMT)\\bin.\nIf you need help, see: https://www.malekal.com/variables-environnement-windows/#Modifier_les_variables_drsquoenvironnement ");
-        getchar();
-        exit(EXIT_FAILURE);
-    }
+        tell_error(__PATH__LENGTH__ERROR__, NULL);
+
 
     if(make_program_dir(ProgramName, NewPath))
     {
         char *Complete_NewPath = malloc(strlen(NewPath) + 1 + strlen("\\") + 1 + strlen(file_name) + 1);
+        
+        if(Complete_NewPath == NULL)
+            tell_error(__ALLOCATION__ERROR__, NULL);
+        
         strcpy(Complete_NewPath, NewPath);
         strcat(Complete_NewPath, "\\");
         strcat(Complete_NewPath, file_name);
@@ -129,14 +124,11 @@ int move_in_VPATH(char *ProgramName, char *ProgramPath, char *file_name)
                 return 0;
         }
         else
-        {
-            errorr("\nThe file could not be moved to the new directory");
-        }
+            tell_error(0, NULL);
     }
     else
-    {
-        errorr("\nAn error has occurred.\nPlease make sure the program was launched as administrator");
-    }
+        tell_error(0, NULL);
+
 
     return 0;
 }

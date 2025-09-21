@@ -16,9 +16,9 @@ void clear_folder()
 
             closedir(d);
         }
-        else{
+        else
             tell_error(__FOLDER__OPENNING__ERROR__, NULL);
-        }
+        
         printf("\nFait !\n");
         stopRun(EXIT_SUCCESS);
 }

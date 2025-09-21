@@ -6,6 +6,10 @@ int main(int argc, char *argv[])
 
     char *answer = malloc(sizeof(char) + 1);
     char *CodePath = malloc(sizeof(char)*300);
+
+    if((answer || CodePath) == NULL)
+        tell_error(__ALLOCATION__ERROR__, NULL);
+
     char *CodePath_cpy;
     fgets(answer, sizeof(answer), stdin);
     viderBuffer();
@@ -18,12 +22,20 @@ int main(int argc, char *argv[])
         viderBuffer();
         CodePath_cpy = strdup(CodePath);
         CodePath = realloc(CodePath, strlen(CodePath) + 1 + strlen("\\gfmt.exe") + 1);
-        strcat(CodePath, "\\fmt.exe");
+
+        if(CodePath_cpy == NULL)
+            tell_error(__ALLOCATION__ERROR__, NULL);
+
+        strcat(CodePath, "\\gfmt.exe");
     }
     else
     {
         getcwd(CodePath, sizeof(char)*300);
         CodePath_cpy = strdup(CodePath);
+
+        if(CodePath_cpy == NULL)
+            tell_error(__ALLOCATION__ERROR__, NULL);
+
         strcat(CodePath, "\\gfmt.exe");
     }
     

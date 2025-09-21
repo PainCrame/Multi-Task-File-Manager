@@ -27,9 +27,8 @@ int check_option(int argc, char *argv[])
 {
 
     if(argc<2)
-    {
         tell_error(__ARGUMENT__ERROR__, NULL);
-    }
+    
 
     int opt;
 
@@ -48,17 +47,17 @@ int check_option(int argc, char *argv[])
             
             case 'h': // Cas pour -h ou --help
                 display_help();
-                exit(EXIT_SUCCESS);
+                stopRun(EXIT_SUCCESS);
                 break;
 
             case 'v':
                 print_version();
-                exit(EXIT_SUCCESS);
+                stopRun(EXIT_SUCCESS);
                 break;
 
             case 'i':
                 print_HelloWorld();
-                exit(EXIT_SUCCESS);
+                stopRun(EXIT_SUCCESS);
                 break;
         }
 

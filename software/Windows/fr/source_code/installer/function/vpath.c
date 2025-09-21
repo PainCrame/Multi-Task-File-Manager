@@ -30,7 +30,6 @@ int vpath_setx(char *ProgramName, char *NewPath)
     else
     {
         tell_error(0, NULL);
-
         return 0;
     }
 }
@@ -65,7 +64,9 @@ int make_program_dir(char *ProgramName, char *NewPath)
 
     strcpy(instruction, "C:\\Program Files\\");
     strcat(instruction, ProgramName);
+    
     DIR *d = opendir(NewPath);
+    
     if (!d)
     {
         printf("\nCr%cation du dossier programme \\%s...", é, ProgramName);
@@ -100,13 +101,12 @@ int move_in_VPATH(char *ProgramName, char *ProgramPath, char *file_name)
     strcat(NewPath, ProgramName);
     
     if(!SETXPATH_LENGHT_GOOD(NewPath))
-    {
         tell_error(__PATH__LENGTH__ERROR__, NULL);
-    }
 
     if(make_program_dir(ProgramName, NewPath))
     {
         char *Complete_NewPath = malloc(strlen(NewPath) + 1 + strlen("\\") + 1 + strlen(file_name) + 1);
+        
         if(Complete_NewPath == NULL)
             tell_error(__ALLOCATION__ERROR__, NULL);
 
@@ -123,14 +123,10 @@ int move_in_VPATH(char *ProgramName, char *ProgramPath, char *file_name)
                 return 0;
         }
         else
-        {
             tell_error(0, NULL);
-        }
     }
     else
-    {
        tell_error(0, NULL);
-    }
 
     return 0;
 }

@@ -1,13 +1,5 @@
 #include ".\..\..\include.h"
 
-void errorr(char *msg)
-{
-    printf("\nCODE ERREUR : ERRNO %d", errno);
-    perror(msg);
-    getchar();
-    exit(EXIT_FAILURE);
-}
-
 char* get_folder_name(char* extension_file)
 {
     char *folder_name;
@@ -42,17 +34,15 @@ void move(char* file_name)
 
             int error = rename(file_name, new_name); //déplacement
             if(error != 0)
-            {
                 tell_error(0, NULL);
-            }
 
             return;
         }
         else
-        {
             tell_error(__FILE__OPENNING__ERROR__, file_name);
-        }
+
     }
+
     else //sinon le créer -> récurisvité
     {
         mkdir(folder_name);
@@ -69,9 +59,8 @@ void trier(void)
     struct dirent *dir;
 
     if((d = opendir(".")) == NULL) //ouvre le dossier courrant
-    {
         tell_error(__FOLDER__OPENNING__ERROR__, NULL);
-    }
+    
 
     readdir(d); //pour enlever les "."
     readdir(d);

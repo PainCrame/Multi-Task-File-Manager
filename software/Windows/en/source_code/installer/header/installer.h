@@ -3,7 +3,6 @@
 
 #include ".\..\..\include\include.h"
 
-void errorr(char *msg);
 int SETXPATH_LENGHT_GOOD(char *NewPath);
 int vpath_setx(char *ProgramName, char *NewPath);
 int make_bin_dir(char *NewPath);

@@ -49,6 +49,7 @@ char *get_extension(char *file_name)
 {
 
   char *file_name_copy = malloc(strlen(file_name)+1);
+
   if(file_name_copy == NULL)
     tell_error(__ALLOCATION__ERROR__, NULL);
 
@@ -75,9 +76,9 @@ char *get_extension(char *file_name)
     free(file_name_copy);
     return extension;
   }
-  else{
+  else
     tell_error(__ALLOCATION__ERROR__, NULL);
-  }
+  
 }
 
 int get_nb_element_in_string(char *variable)
@@ -86,6 +87,7 @@ int get_nb_element_in_string(char *variable)
     char *token;
     int element_nb = 0;
     char *variable_copy = malloc(strlen(variable)+1);
+    
     if(variable_copy == NULL)
         tell_error(__ALLOCATION__ERROR__, NULL);
 

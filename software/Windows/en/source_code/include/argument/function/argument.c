@@ -2,6 +2,9 @@
 #include <stdlib.h>
 #include <getopt.h>
 
+#include ".\..\..\include.h"
+
+
 // Fonction qui affiche le message d'aide
 void display_help(void) {
     printf("Usage : mtfm [FOLDER_PATH]...\n");
@@ -24,10 +27,8 @@ void print_version(void)
 int check_option(int argc, char *argv[]) {
 
     if(argc<2)
-    {
-        fprintf(stderr, "\nInsufficient call arguments.\nFor more help, use \"gfmt --help\"");
-        exit(EXIT_FAILURE);
-    }
+        tell_error(__ARGUMENT__ERROR__, NULL);
+        
 
     int opt;
 
@@ -46,17 +47,17 @@ int check_option(int argc, char *argv[]) {
             
             case 'h': // Cas pour -h ou --help
                 display_help();
-                exit(EXIT_SUCCESS);
+                stopRun(EXIT_SUCCESS);
                 break;
 
             case 'v':
                 print_version();
-                exit(EXIT_SUCCESS);
+                stopRun(EXIT_SUCCESS);
                 break;
 
             case 'i':
                 print_HelloWorld();
-                exit(EXIT_SUCCESS);
+                stopRun(EXIT_SUCCESS);
                 break;
         }
 

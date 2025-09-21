@@ -8,6 +8,10 @@ void uninstall_extension(char *exe_name_path)
     struct dirent *dir;
 
     char *exe_path_cpy = strdup(exe_name_path);
+
+    if(exe_path_cpy == NULL)
+        tell_error(__ALLOCATION__ERROR__, NULL);
+
     char *actual_exe_name = get_exe_name(exe_path_cpy);
     free(exe_path_cpy);
 

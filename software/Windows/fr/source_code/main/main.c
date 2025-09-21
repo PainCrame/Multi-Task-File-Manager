@@ -19,7 +19,6 @@ int main(int argc, char *argv[])
         tell_error(__FOLDER__OPENNING__ERROR__, NULL);
     }
 
-
     printf("\nBienvenue dans le Gestionnaire de Fichier Multi-fonction !\n");
     
     while(1)
