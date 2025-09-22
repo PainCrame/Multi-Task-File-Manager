@@ -21,13 +21,13 @@ It would be really useful to have software to do it for me! And so here I am.
 ## 🚀 Usage
 
 ```source.powershell
->>> mtfm ‘C:\Users\Hello\Downloads’
+>>> mtfm "C:\Users\Hello\Downloads"
 >>> Welcome to the Multi-Function File Manager!
 
-	You are in the folder: C:\Users\
+	You are in the folder: C:\Users\Hello\Downloads
     (CTRL+C if you want to stop the program)
 
-    Would you like to: DELETE CERTAIN FILES (0) or CLEAN UP THE FOLDER     (1):  or SORT THE FOLDER (2):
+    Would you like to: DELETE FILES (0) or CLEAN UP THE FOLDER (1):  or SORT THE FOLDER (2):
 	
 ```
 
