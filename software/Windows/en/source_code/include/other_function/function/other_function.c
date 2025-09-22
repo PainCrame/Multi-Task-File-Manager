@@ -27,7 +27,7 @@ int tell_error(int error_code, char *_Str)
         
         case __FILE__OPENNING__ERROR__:
         {
-            fprintf(stderr, "\nThe folder %s already exists or is inaccessible.", _Str);
+            fprintf(stderr, "\nERROR : The folder %s already exists or is inaccessible.", _Str);
             fprintf(stderr, "\nPlease check if it exists in C:\\Program Files");
             fprintf(stderr, "\nIf so, please delete it.");
             perror("ERROR "); 
@@ -43,28 +43,35 @@ int tell_error(int error_code, char *_Str)
 
         case __FOLDER__OPENNING__ERROR__:
         {
-            fprintf(stderr, RED"ERROR : Failed to open the folder"RESET);
+            fprintf(stderr, RED"\nERROR : Failed to open the folder"RESET);
             perror("ERROR "); 
             stopRun(EXIT_FAILURE);
         }
 
         case __ARGUMENT__ERROR__:
         {
-            fprintf(stderr, "\nInsufficient call arguments.\nFor more help, use \"gfmt --help\"");
-            perror("ERROR "); 
+            fprintf(stderr, "\nERROR : Insufficient call arguments.\nFor more help, use \"mtfm --help\"");
             stopRun(EXIT_FAILURE);
         }
 
         case __ALLOCATION__ERROR__:
         {
-            fprintf(stderr, "Allocation error");
+            fprintf(stderr, "\nERROR : Memory allocation error");
             perror("ERROR "); 
             stopRun(EXIT_FAILURE);
         }
 
         case __PATH__LENGTH__ERROR__:
         {
-            fprintf(stderr, "\nYour PATH environment variable is too full to complete this operation automatically.\nPlease do this manually by adding the following to your user environment variable named PATH: C:\\Program Files\\<your_folder_name> (suggested: GestionnaireDeFichierMT)\\bin.\nIf you need help, see: https://www.malekal.com/variables-environnement-windows/#Modifier_les_variables_drsquoenvironnement ");
+            fprintf(stderr, "\nERROR : Your PATH environment variable is too full to complete this operation automatically.\nPlease do this manually by adding the following to your user environment variable named PATH: C:\\Program Files\\<your_folder_name> (suggested: GestionnaireDeFichierMT)\\bin.\nIf you need help, see: https://www.malekal.com/variables-environnement-windows/#Modifier_les_variables_drsquoenvironnement ");
+            stopRun(EXIT_FAILURE);
+        }
+
+        case __FILE__MOVE__ERROR__:
+        {
+            fprintf(stderr, "\nERROR : Error moving %s file.", _Str);
+            fprintf(stderr, "\nRename the file can resolve the problem.");
+            perror("\nERROR "); 
             stopRun(EXIT_FAILURE);
         }
 

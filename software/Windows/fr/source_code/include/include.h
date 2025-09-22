@@ -31,5 +31,6 @@
 #define __ARGUMENT__ERROR__ 4
 #define __ALLOCATION__ERROR__ 5
 #define __PATH__LENGTH__ERROR__ 6
+#define __FILE__MOVE__ERROR__ 7
 
 #endif

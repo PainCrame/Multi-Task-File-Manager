@@ -7,7 +7,7 @@ int main(int argc, char *argv[])
     char *answer = malloc(sizeof(char) + 1);
     char *CodePath = malloc(sizeof(char)*300);
 
-    if((answer || CodePath) == NULL)
+    if((answer == NULL) || (CodePath == NULL))
         tell_error(__ALLOCATION__ERROR__, NULL);
 
     char *CodePath_cpy;

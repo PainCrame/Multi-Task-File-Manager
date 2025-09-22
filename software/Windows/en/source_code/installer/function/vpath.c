@@ -115,7 +115,13 @@ int move_in_VPATH(char *ProgramName, char *ProgramPath, char *file_name)
         strcat(Complete_NewPath, "\\");
         strcat(Complete_NewPath, file_name);
 
+        errno = 0;
+
         int move_file = rename(ProgramPath, Complete_NewPath);
+        
+        if(errno == EEXIST)
+            tell_error(__FILE__MOVE__ERROR__, ProgramPath);
+        
         free(Complete_NewPath);
 
         if(move_file == 0)

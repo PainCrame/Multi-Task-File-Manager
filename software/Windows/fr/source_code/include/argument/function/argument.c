@@ -20,7 +20,7 @@ void print_HelloWorld(void)
 
 void print_version(void)
 {
-    printf("\nv2.0\n");
+    printf("\nv2.5\n");
 }
 
 int check_option(int argc, char *argv[])

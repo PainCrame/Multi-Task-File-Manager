@@ -45,7 +45,12 @@ void move(char* file_name)
 
     else //sinon le créer -> récurisvité
     {
+        errno = 0;
         mkdir(folder_name);
+
+        if(errno !=0)
+            tell_error(0, NULL);
+        
         free(extension);
         free(folder_name);
         move(file_name);
@@ -56,6 +61,7 @@ void move(char* file_name)
 void trier(void)
 {
     DIR *d;
+    FILE *f;
     struct dirent *dir;
 
     if((d = opendir(".")) == NULL) //ouvre le dossier courrant
@@ -67,8 +73,13 @@ void trier(void)
 
     while((dir = readdir(d)) != NULL) //tant qu'on a pas lu tout le dossier
     {
-        if(!isFolder(dir->d_name)) //si l'élément n'est pas un dossier
+        errno = 0;
+
+        if(!isFolder(dir->d_name) && ((f = fopen(dir->d_name, "r")) != NULL)) //si l'élément n'est pas un dossier
             move(dir->d_name);
+
+        if(errno == EEXIST) //si le fichier existe dans la destination
+            tell_error(__FILE__MOVE__ERROR__, dir->d_name);
     }
 
     return;
