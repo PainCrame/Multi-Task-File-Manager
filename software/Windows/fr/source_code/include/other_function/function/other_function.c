@@ -27,7 +27,7 @@ int tell_error(int error_code, char *_Str)
         
         case __FILE__OPENNING__ERROR__:
         {
-            fprintf(stderr, RED"\nERREUR : Le fichier"RESET WHITE" %s" RESET RED " n'existe pas"RESET, _Str);
+            fprintf(stderr, RED"\nERREUR : L'ouverture du fichier"RESET WHITE" %s" RESET RED " à échoué"RESET, _Str);
             fprintf(stderr, YELLOW"\nFin de la supression."RESET);
             fprintf(stderr, "\nS'il vous pla%ct, v%crifiez si le fichier existe, ou n'est pas d%cj%c ouvert, puis r%cessayez.\n", î, é, é, à, é);
             perror("\nERROR "); 

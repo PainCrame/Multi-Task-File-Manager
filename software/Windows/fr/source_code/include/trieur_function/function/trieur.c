@@ -19,7 +19,7 @@ void move(char* file_name)
     
     if(isFolder(folder_name)) //si le dossier existe
     {
-        if((f = fopen(file_name, "r+")) != 0) //si le fichier s'ouvre
+        if((f = fopen(file_name, "r+")) != NULL) //si le fichier s'ouvre
         {
             char* new_name;
             if((new_name =  malloc( strlen(".\\") + strlen(folder_name) + strlen("\\") + strlen(file_name) + 1)) == NULL) //allocation
@@ -32,9 +32,12 @@ void move(char* file_name)
 
             fclose(f);
 
-            int error = rename(file_name, new_name); //déplacement
-            if(error != 0)
-                tell_error(0, NULL);
+            errno = 0;
+
+            rename(file_name, new_name); //déplacement
+            
+            if(errno == EEXIST) //si le fichier existe dans la destination
+                tell_error(__FILE__MOVE__ERROR__, file_name);
 
             return;
         }
@@ -73,13 +76,8 @@ void trier(void)
 
     while((dir = readdir(d)) != NULL) //tant qu'on a pas lu tout le dossier
     {
-        errno = 0;
-
         if(!isFolder(dir->d_name) && ((f = fopen(dir->d_name, "r")) != NULL)) //si l'élément n'est pas un dossier
             move(dir->d_name);
-
-        if(errno == EEXIST) //si le fichier existe dans la destination
-            tell_error(__FILE__MOVE__ERROR__, dir->d_name);
     }
 
     return;
