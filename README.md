@@ -20,6 +20,8 @@ It would be really useful to have software to do it for me! And so here I am.
 
 ## 🚀 Usage
 
+Open a terminal and run the command ```mtfm "C:\The_path_to_the_folder"```
+
 ```source.powershell
 >>> mtfm "C:\Users\Hello\Downloads"
 >>> Welcome to the Multi-Function File Manager!
@@ -27,7 +29,7 @@ It would be really useful to have software to do it for me! And so here I am.
 	You are in the folder: C:\Users\Hello\Downloads
     (CTRL+C if you want to stop the program)
 
-    Would you like to: DELETE FILES (0) or CLEAN UP THE FOLDER (1):  or SORT THE FOLDER (2):
+    Would you like to: DELETE FILES (0) or CLEAN UP THE FOLDER (1)  or SORT THE FOLDER (2):
 	
 ```
 
