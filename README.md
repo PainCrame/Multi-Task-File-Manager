@@ -2,7 +2,7 @@
 
 - If you're the untidy type, this software is for you:  
  It allows you to:  
-  - Sort files for you  
+  - Sort folder for you  
   - Empty them if necessary  
   - For example, delete all PDFs in your Downloads folder  
   
