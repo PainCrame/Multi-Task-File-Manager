@@ -20,6 +20,8 @@ Ca serait vraiment utile d’avoir un logiciel pour le faire à ma place ! Et j
 
 ## 🚀 Usage
 
+Ouvrez un terminal, et lancez la commande ```gfmt "C:\Le_chemin_vers_le_dossier"```
+
 ```source.powershell
 >>> gfmt « C:\Users\Hello\Downloads »
 >>> Bienvenue dans le Gestionnaire de Fichier Multi-fonction !
