@@ -34,6 +34,9 @@ void uninstall_extension(char *exe_name_path)
     char **list_instruction = calloc(get_nb_element_in_string(instruction), sizeof(char)*100); //alloue ynamiquemenet un tableau 2D qui va contenir les instructions + le caractère de fin
     char **list_exception = calloc(get_nb_element_in_string(exception), sizeof(char)*100); //alloue ynamiquemenet un tableau 2D qui va contenir les exception + le caractère de fin
 
+    if((list_exception == NULL) || (list_instruction == NULL))
+        tell_error(__ALLOCATION__ERROR__, NULL);
+
     strarr(list_instruction, instruction, " ,/:-_."); //remplie le tableau à partir des instructions
     strarr(list_exception, exception, " ,"); //remplie le tableau à partir des exceptions
     

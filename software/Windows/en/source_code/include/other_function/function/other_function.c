@@ -70,9 +70,21 @@ int tell_error(int error_code, char *_Str)
         case __FILE__MOVE__ERROR__:
         {
             fprintf(stderr, "\nERROR : Error moving %s file.", _Str);
-            fprintf(stderr, "\nRename the file can resolve the problem.");
+            fprintf(stderr, "\nRename the file, or launch the program as administrator, can resolve the problem.");
             perror("\nERROR "); 
             stopRun(EXIT_FAILURE);
+        }
+
+        case __MAKE_FOLDER__ERROR__:
+        {
+            fprintf(stderr, "\nFailed to create the folder");
+            perror("\nERROR ");
+            stopRun(EXIT_FAILURE);
+        }
+
+        case __FILE__DELETE__ERROR__:
+        {
+            fprintf(stderr, RED"\nERROR: Deletion of %s file failed.", _Str);
         }
 
     }

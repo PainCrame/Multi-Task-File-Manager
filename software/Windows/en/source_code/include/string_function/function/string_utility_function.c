@@ -68,10 +68,8 @@ char *get_extension(char *file_name)
     actual_token = strtok(NULL, separator);
   }
 
-  if (last_token == NULL) {
-    free(file_name_copy);
-    return "ERROR";
-  }
+  if (last_token == NULL)
+    tell_error(0, NULL);
 
   char *extension;
 

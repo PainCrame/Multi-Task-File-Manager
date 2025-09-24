@@ -28,7 +28,6 @@ int check_option(int argc, char *argv[])
 
     if(argc<2)
         tell_error(__ARGUMENT__ERROR__, NULL);
-    
 
     int opt;
 

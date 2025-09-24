@@ -21,14 +21,13 @@ void print_HelloWorld(void)
 
 void print_version(void)
 {
-    printf("\nv2.0\n");
+    printf("\nv2.5\n");
 }
 
 int check_option(int argc, char *argv[]) {
 
     if(argc<2)
         tell_error(__ARGUMENT__ERROR__, NULL);
-        
 
     int opt;
 

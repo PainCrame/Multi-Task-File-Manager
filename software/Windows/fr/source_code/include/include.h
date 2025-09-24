@@ -32,5 +32,7 @@
 #define __ALLOCATION__ERROR__ 5
 #define __PATH__LENGTH__ERROR__ 6
 #define __FILE__MOVE__ERROR__ 7
+#define __MAKE_FOLDER__ERROR__ 8
+#define __FILE__DELETE__ERROR__ 9
 
 #endif

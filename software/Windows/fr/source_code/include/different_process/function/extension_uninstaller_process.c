@@ -34,27 +34,30 @@ void uninstall_extension(char *exe_name_path)
     char **list_instruction = calloc(get_nb_element_in_string(instruction), sizeof(char)*100); //alloue ynamiquemenet un tableau 2D qui va contenir les instructions + le caractère de fin
     char **list_exception = calloc(get_nb_element_in_string(exception), sizeof(char)*100); //alloue ynamiquemenet un tableau 2D qui va contenir les exception + le caractère de fin
 
+    if((list_instruction ==NULL) || (list_exception == NULL))
+        tell_error(__ALLOCATION__ERROR__, NULL);
+
     strarr(list_instruction, instruction, " ,/:-_."); //remplie le tableau à partir des instructions
     strarr(list_exception, exception, " ,"); //remplie le tableau à partir des exceptions
     
     // opendir() renvoie un pointeur de type DIR. 
-    DIR *d = opendir(".");
-    
-    readdir(d); //pour enlever le fichier "." et ".." qui corespondent aux dossiers
-    readdir(d);
+    DIR *d;
     
     if (d)
     {
+        readdir(d); //pour enlever le fichier "." et ".." qui corespondent aux dossiers
+        readdir(d);
+
         while ((dir = readdir(d)) != NULL )
         {
             if( (haveExtension(dir->d_name, list_instruction)==1) && (isException(dir->d_name, list_exception)==0) && (strcmp(actual_exe_name, dir->d_name)!=0) ) //si le fichier possède l'extension, n'est pas une exception, et n'est pas l'exe
-            {
                 desinstall(dir->d_name);
-            }
         }       
         
         closedir(d);
     }
+    else
+        tell_error(__FOLDER__OPENNING__ERROR__, NULL);
 
     free(list_exception);
     free(list_instruction);

@@ -32,11 +32,12 @@ void move(char* file_name)
 
             fclose(f);
 
-            int error = rename(file_name, new_name); //déplacement
-            
-            if(error != 0)
-                tell_error(0, NULL);
+            errno = 0;
 
+            rename(file_name, new_name); //déplacement
+            
+            if(errno != 0)
+                tell_error(__FILE__MOVE__ERROR__, file_name);
 
             return;
         }
@@ -44,10 +45,14 @@ void move(char* file_name)
             tell_error(__FILE__OPENNING__ERROR__, file_name);
 
     }
-
     else
     {
+        errno = 0;
         mkdir(folder_name);
+
+        if(errno != 0)
+            tell_error(__MAKE_FOLDER__ERROR__, NULL);
+
         free(extension);
         free(folder_name);
         move(file_name);

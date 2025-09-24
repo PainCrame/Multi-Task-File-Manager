@@ -66,7 +66,7 @@ char *get_extension(char *file_name)
 
   if (last_token == NULL) {
     free(file_name_copy);
-    return "ERROR";
+    tell_error(0, NULL);
   }
 
   char *extension;

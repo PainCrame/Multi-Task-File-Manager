@@ -21,7 +21,13 @@ void desinstall(char *file_name)
 
     printf(YELLOW "\nUninstalling..." RESET);
 
+    errno = 0;
+
     remove(file_name);
+    
+    if(errno != 0)
+        tell_error(__FILE__MOVE__ERROR__, file_name);
+
     printf(GREEN "\nSuccessful" RESET " uninstallation of" BLUE " %s "RESET"!", file_name);
 }
 
@@ -32,7 +38,6 @@ void process_uninstall_file(void)
     printf("\n Enter the  name of the files to uninstall, with his "BLUE"extension"RESET" (like document"YELLOW".txt"RESET" or image"YELLOW".png"RESET") (separated by "BOLDWHITE"comas"RESET") : ");
     char instruction[255];
 
-    // scanf("%s", &instruction);
     fgets(instruction, sizeof(instruction) + sizeof(char), stdin);
     instruction[strcspn(instruction, "\n")] = '\0';
 

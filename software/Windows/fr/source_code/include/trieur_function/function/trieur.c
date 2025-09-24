@@ -52,7 +52,7 @@ void move(char* file_name)
         mkdir(folder_name);
 
         if(errno !=0)
-            tell_error(0, NULL);
+            tell_error(__MAKE_FOLDER__ERROR__, NULL);
         
         free(extension);
         free(folder_name);
@@ -77,7 +77,10 @@ void trier(void)
     while((dir = readdir(d)) != NULL) //tant qu'on a pas lu tout le dossier
     {
         if(!isFolder(dir->d_name) && ((f = fopen(dir->d_name, "r")) != NULL)) //si l'élément n'est pas un dossier
+        {
+            fclose(f);
             move(dir->d_name);
+        }
     }
 
     return;
