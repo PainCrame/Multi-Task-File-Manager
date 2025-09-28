@@ -59,7 +59,6 @@ int check_option(int argc, char *argv[])
                 stopRun(EXIT_SUCCESS);
                 break;
         }
-
     }
     
     return 0;

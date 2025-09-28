@@ -19,30 +19,30 @@ void move(char* file_name)
     
     if(isFolder(folder_name)) //si le dossier existe
     {
-        if((f = fopen(file_name, "r+")) != NULL) //si le fichier s'ouvre
-        {
-            char* new_name;
-            if((new_name =  malloc( strlen(".\\") + strlen(folder_name) + strlen("\\") + strlen(file_name) + 1)) == NULL) //allocation
-                tell_error(__ALLOCATION__ERROR__, NULL);
-            
-            strcpy(new_name, ".\\"); //nouveau path
-            strcat(new_name, folder_name);
-            strcat(new_name, "\\");
-            strcat(new_name, file_name);
-
-            fclose(f);
-
-            errno = 0;
-
-            rename(file_name, new_name); //déplacement
-            
-            if(errno == EEXIST) //si le fichier existe dans la destination
-                tell_error(__FILE__MOVE__ERROR__, file_name);
-
-            return;
-        }
-        else
+        if((f = fopen(file_name, "r+")) == NULL) //si le fichier s'ouvre
             tell_error(__FILE__OPENNING__ERROR__, file_name);
+        
+        char* new_name;
+        
+        if((new_name =  malloc( strlen(".\\") + strlen(folder_name) + strlen("\\") + strlen(file_name) + 1)) == NULL) //allocation
+            tell_error(__ALLOCATION__ERROR__, NULL);
+        
+        strcpy(new_name, ".\\"); //nouveau path
+        strcat(new_name, folder_name);
+        strcat(new_name, "\\");
+        strcat(new_name, file_name);
+
+        fclose(f);
+
+        errno = 0;
+        rename(file_name, new_name); //déplacement
+        
+        if(errno == EEXIST) //si le fichier existe dans la destination
+            tell_error(__FILE__MOVE__ERROR__, file_name);
+
+        return;
+        
+
 
     }
 

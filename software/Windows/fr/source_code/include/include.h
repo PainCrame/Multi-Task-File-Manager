@@ -10,6 +10,7 @@
 #include <dirent.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 #define é 130
 #define è 138

@@ -43,21 +43,19 @@ void uninstall_extension(char *exe_name_path)
     // opendir() renvoie un pointeur de type DIR. 
     DIR *d;
     
-    if (d)
-    {
-        readdir(d); //pour enlever le fichier "." et ".." qui corespondent aux dossiers
-        readdir(d);
-
-        while ((dir = readdir(d)) != NULL )
-        {
-            if( (haveExtension(dir->d_name, list_instruction)==1) && (isException(dir->d_name, list_exception)==0) && (strcmp(actual_exe_name, dir->d_name)!=0) ) //si le fichier possède l'extension, n'est pas une exception, et n'est pas l'exe
-                desinstall(dir->d_name);
-        }       
-        
-        closedir(d);
-    }
-    else
+    if (d == NULL)
         tell_error(__FOLDER__OPENNING__ERROR__, NULL);
+
+    readdir(d); //pour enlever le fichier "." et ".." qui corespondent aux dossiers
+    readdir(d);
+
+    while ((dir = readdir(d)) != NULL )
+    {
+        if( (haveExtension(dir->d_name, list_instruction)==1) && (isException(dir->d_name, list_exception)==0) && (strcmp(actual_exe_name, dir->d_name)!=0) ) //si le fichier possède l'extension, n'est pas une exception, et n'est pas l'exe
+            desinstall(dir->d_name);
+    }       
+    
+    closedir(d);
 
     free(list_exception);
     free(list_instruction);

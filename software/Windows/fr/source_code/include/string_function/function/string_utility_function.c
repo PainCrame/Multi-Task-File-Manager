@@ -11,9 +11,8 @@ int chararrlen(char **array)
     int i = 0; 
 
     while(array[i]!=NULL)
-    {
         i++;
-    }
+
     return i;
 }
 
