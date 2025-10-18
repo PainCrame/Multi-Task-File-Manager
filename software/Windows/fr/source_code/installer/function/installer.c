@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
     fgets(answer, sizeof(answer), stdin);
     viderBuffer();
 
-    if(strcmp(answer, "o") == 0)
+    if(strcmp(answer, "o\n") == 0)
     {
         free(answer);
         printf("\nEntrez le chemin complet vers le dossier où se situe le fichier \"gfmt.exe\" (%ca ressemble %c \"C:\\Utilisateur\\<votre_nom>\\T%cl%cchargements\"): ", ç, à, é, é);

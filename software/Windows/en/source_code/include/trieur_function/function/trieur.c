@@ -1,20 +1,10 @@
 #include ".\..\..\include.h"
 
-char* get_folder_name(char* extension_file)
-{
-    char *folder_name;
-    if((folder_name  = strdup( toUperCase(extension_file))) == NULL)
-        tell_error(__ALLOCATION__ERROR__, NULL);
-    
-    return folder_name;
-    
-}
-
 void move(char* file_name)
 {
     FILE *f;
-    char *extension = get_extension(file_name);
-    char *folder_name = get_folder_name(extension);
+
+    char *folder_name = get_extension(file_name);
 
     
     if(isFolder(folder_name))
@@ -51,9 +41,8 @@ void move(char* file_name)
         mkdir(folder_name);
 
         if(errno != 0)
-            tell_error(__MAKE_FOLDER__ERROR__, NULL);
+            tell_error(__MAKE_FOLDER__ERROR__, folder_name);
 
-        free(extension);
         free(folder_name);
         move(file_name);
         return;

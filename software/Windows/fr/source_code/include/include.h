@@ -35,5 +35,6 @@
 #define __FILE__MOVE__ERROR__ 7
 #define __MAKE_FOLDER__ERROR__ 8
 #define __FILE__DELETE__ERROR__ 9
+#define __FOLDER__DELETE__ERROR__ 10
 
 #endif
