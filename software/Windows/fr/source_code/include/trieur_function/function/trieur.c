@@ -29,6 +29,8 @@ void move(char* file_name)
         if(errno == EEXIST) //si le fichier existe dans la destination
             tell_error(__FILE__MOVE__ERROR__, file_name);
 
+        printf(GREEN"\nD%cplacement"RESET" de %s", é, file_name);
+
         return;
         
 

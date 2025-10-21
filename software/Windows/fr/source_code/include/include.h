@@ -7,6 +7,7 @@
 #include ".\other_function\other_function.h"
 #include ".\trieur_function\trieur.h"
 #include ".\argument\argument.h"
+#include ".\extract\extract.h"
 #include <dirent.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -36,5 +37,6 @@
 #define __MAKE_FOLDER__ERROR__ 8
 #define __FILE__DELETE__ERROR__ 9
 #define __FOLDER__DELETE__ERROR__ 10
+#define __GET__DIR__ERROR__ 11
 
 #endif

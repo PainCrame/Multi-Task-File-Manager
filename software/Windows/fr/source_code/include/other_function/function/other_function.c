@@ -19,7 +19,7 @@ int tell_error(int error_code, char *_Str)
     {
         case 0:
         {
-            fprintf(stderr, "Une erreur est survenue.\nCode erreur ERRNO : %d", errno);
+            fprintf(stderr, RED"Une erreur est survenue.\nCode erreur ERRNO : %d"RESET, errno);
             perror("\nERROR ");
             fprintf(stderr, "\nLancer le programme en tant qu'administrateur peut r%csoudre lr probl%cme.", é, è);
             stopRun(EXIT_FAILURE);
@@ -43,33 +43,33 @@ int tell_error(int error_code, char *_Str)
 
         case __FOLDER__OPENNING__ERROR__:
         {
-            fprintf(stderr, RED"\nERREUR :  L'ouverture du dossier est impossible"RESET);
+            fprintf(stderr, RED"\nERREUR :  L'ouverture du dossier %s est impossible"RESET, _Str);
             perror("\nERROR "); 
             stopRun(EXIT_FAILURE);
         }
 
         case __ARGUMENT__ERROR__:
         {
-            fprintf(stderr, "\nERREUR : Arguments d'appels insufisant.\nPour plus d'aide, utiliser \"gfmt --help\"");
+            fprintf(stderr, RED"\nERREUR : Arguments d'appels insufisant.\nPour plus d'aide, utiliser \"gfmt --help\""RESET);
             stopRun(EXIT_FAILURE);
         }
 
         case __ALLOCATION__ERROR__:
         {
-            fprintf(stderr, "\nERREUR : Erreur d'allocation de m%cmoire", é);
+            fprintf(stderr, RED"\nERREUR : Erreur d'allocation de m%cmoire"RESET, é);
             perror("\nERROR ");
             stopRun(EXIT_FAILURE);
         }
 
         case __PATH__LENGTH__ERROR__:
         {
-            fprintf(stderr, "\nERREUR : Votre variable d'envrionnement PATH est trop charg%c pour que cette op%cration sois r%calis%c de mani%cre automatique.\nS'il vous pla%ct, r%calisez cette action de façon manuelle en ajoutant le dossier suivant %c votre variable d'environnement utilisateur nomm%c PATH. Le chemin : C:\\Program Files\\<your_folder_name> (si vous n'avez rien modifi%c c'est : GestionnaireDeFichierMT)\\bin.\nSi vous avez besoin d'aide, consultez sur google : https://www.malekal.com/variables-environnement-windows/#Modifier_les_variables_drsquoenvironnement ", é, é, é, é, è, î, é, à, é, é);
+            fprintf(stderr, RED"\nERREUR : Votre variable d'envrionnement PATH est trop charg%c pour que cette op%cration sois r%calis%c de mani%cre automatique.\nS'il vous pla%ct, r%calisez cette action de façon manuelle en ajoutant le dossier suivant %c votre variable d'environnement utilisateur nomm%c PATH. Le chemin : C:\\Program Files\\<your_folder_name> (si vous n'avez rien modifi%c c'est : GestionnaireDeFichierMT)\\bin.\nSi vous avez besoin d'aide, consultez sur google :"RESET" https://www.malekal.com/variables-environnement-windows/#Modifier_les_variables_drsquoenvironnement ", é, é, é, é, è, î, é, à, é, é);
             stopRun(EXIT_FAILURE);
         }
 
         case __FILE__MOVE__ERROR__:
         {
-            fprintf(stderr, "\nERREUR : Erreur dans le d%cplacement du fichier %s.", é, _Str);
+            fprintf(stderr, RED"\nERREUR : Erreur dans le d%cplacement du fichier %s."RESET, é, _Str);
             fprintf(stderr, "\nRenommer ce fichier peut r%csoudre l'erreur.", é);
             perror("\nERROR "); 
             stopRun(EXIT_FAILURE);
@@ -77,7 +77,7 @@ int tell_error(int error_code, char *_Str)
 
         case __MAKE_FOLDER__ERROR__:
         {
-            fprintf(stderr, "\nERREUR : La cr%cation du dossier %s a %cchou%c.", é, _Str, é, é);
+            fprintf(stderr, RED"\nERREUR : La cr%cation du dossier %s a %cchou%c."RESET, é, _Str, é, é);
             perror("\nERROR ");
             stopRun(EXIT_FAILURE);
         }
@@ -85,7 +85,7 @@ int tell_error(int error_code, char *_Str)
         case __FILE__DELETE__ERROR__:
         {
             fprintf(stderr, RED"\nERREUR : La suppression du fichier"RESET WHITE" %s" RESET RED " %c %cchou%c"RESET, _Str, à, é, é);
-            fprintf(stderr, "Lancer le programme en tant qu'administrateur peut r%csoudre le probl%cme", é, è);
+            fprintf(stderr, "\nLancer le programme en tant qu'administrateur peut r%csoudre le probl%cme", é, è);
             perror("\nERROR ");
             stopRun(EXIT_FAILURE);
         }
@@ -94,6 +94,14 @@ int tell_error(int error_code, char *_Str)
         {
             fprintf(stderr, RED"\nERREUR : La suppression du dossier"RESET WHITE" %s" RESET RED " %c %cchou%c"RESET, _Str, à, é, é);
             fprintf(stderr, "Lancer le programme en tant qu'administrateur peut r%csoudre le probl%cme", é, è);
+            perror("\nERROR ");
+            stopRun(EXIT_FAILURE);
+        }
+
+        case __GET__DIR__ERROR__:
+        {
+            fprintf(stderr, RED"\nERREUR : La lecture du chemin courant %c %cchou%c"RESET, _Str, à, é, é);
+            fprintf(stderr, "\nLancer le programme en tant qu'administrateur peut r%csoudre le probl%cme", é, è);
             perror("\nERROR ");
             stopRun(EXIT_FAILURE);
         }

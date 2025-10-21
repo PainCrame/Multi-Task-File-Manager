@@ -43,7 +43,7 @@ int tell_error(int error_code, char *_Str)
 
         case __FOLDER__OPENNING__ERROR__:
         {
-            fprintf(stderr, RED"\nERROR : Failed to open the folder"RESET);
+            fprintf(stderr, RED"\nERROR : Failed to open the folder %s"RESET, _Str);
             perror("ERROR "); 
             stopRun(EXIT_FAILURE);
         }

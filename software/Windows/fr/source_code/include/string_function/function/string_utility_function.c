@@ -47,12 +47,7 @@ void strarr(char **array_list, char *init_string, char *delim) //transforme un *
 char *get_extension(char *file_name)
 {
 
-  char *file_name_copy = malloc(strlen(file_name)+1);
-
-  if(file_name_copy == NULL)
-    tell_error(__ALLOCATION__ERROR__, NULL);
-
-  strcpy(file_name_copy, file_name); 
+  char *file_name_copy = strdup(file_name);
 
   char const *separator = ".";
   char *actual_token = strtok(file_name_copy, separator);

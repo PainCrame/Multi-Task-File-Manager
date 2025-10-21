@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
         char buffer[PATH_MAX];
 
         printf("\nVous %ctes dans le dossier : %s\n(CTRL+C si vous souhaitez stopper le programme)\n", ê, getcwd(buffer, PATH_MAX));
-        printf("\nSouhaitez vous : "BLUE "SUPPRIMER CERTAINS FICHIERS (0)"RESET" ou "BLUE"NETTOYER LE DOSSIER (1) : "RESET" ou "BLUE"TRIER LE DOSSIER (2) : "RESET);
+        printf("\nSouhaitez vous : "BLUE "SUPPRIMER CERTAINS FICHIERS (0)"RESET" ou "BLUE"NETTOYER LE DOSSIER (1) : "RESET" ou "BLUE"TRIER LE DOSSIER (2)"RESET" ou "BLUE"EXTRAIRE LES FICHIERS ET SOUS FICHIERS (3) : "RESET);
         scanf("%d", &instruction);
         viderBuffer();
         
@@ -37,23 +37,19 @@ int main(int argc, char *argv[])
             scanf("%d", &instruction);
             viderBuffer();
 
-            if(instruction==0)
+            if(instruction != 0)
             {  
-                clear_folder();
-
-            }else if( instruction == 1){
-
+                instruction = 4;
                 continue;
-                
-            }else{
-                tell_error(__INVALID__OPTIONN__, NULL);
             }
-            return 1;
+
+            clear_folder();
+            instruction = 4;
         }
 
         else if(instruction == 0)
         {
-            instruction = 3;
+            instruction = 4;
 
             printf("\nSouhaitez vous supprimer les fichiers par leur :"BLUE" NOM (0)"RESET" or"BLUE" EXTENSION (1)"RESET" : ");
             scanf("%d", &instruction);
@@ -62,10 +58,15 @@ int main(int argc, char *argv[])
             if(instruction == 0)
             {
                 process_uninstall_file();
+
+                instruction = 4;
+
             }
             else if(instruction == 1)
             {
                 uninstall_extension(argv[0]);
+
+                instruction = 4;
             }
             else
             {
@@ -75,11 +76,28 @@ int main(int argc, char *argv[])
 
         else if(instruction == 2)
         {
-            instruction = 3;
+            instruction = 4;
 
             trier();
 
             printf("\nLe dossier a %ct%c correctement tri%c !\n", é, é, é);
+
+            instruction = 4;
+        }
+
+        else if(instruction == 3)
+        {
+            printf(RED"\nATTENTION : Les sous dossiers une fois vidé seront supprimés."RESET" \nSouhaitez vous continuer ? Oui (0) / Non (1)");
+            scanf("%d", instruction);
+
+            if(instruction != 0)
+                continue;
+
+            extract_main_folder();
+
+            printf("\nTous les sous fichiers ont correctement %ct%c extraits", é, é);
+
+            instruction = 4;
         }
 
         else
