@@ -42,9 +42,7 @@ Simple installation:
 -Download the file corresponding to your situation (for example, on Windows in English, go to the folder software\Windows\en\bin and download the exe file)  
 -Download the corresponding installer here (installer\Windows\en)    
 -Run the installer as an administrator (Shift + left click).  
--The software is now installed! Open a terminal and run the command ```mtfm --hello```  
-  
-*An uninstaller is currently being developed...*  
+-The software is now installed! Open a terminal and run the command ```mtfm --hello```   
 
 
 ## 💭 Feedback and Contributing  
