@@ -3,6 +3,7 @@
 - If you're the untidy type, this software is for you:  
  It allows you to:  
   - Sort folder for you  
+  - Extract all files from a folder and its subfolders
   - Empty them if necessary  
   - For example, delete all PDFs in your Downloads folder  
   
@@ -29,7 +30,7 @@ Open a terminal and run the command ```mtfm "C:\The_path_to_the_folder"```
 	You are in the folder: C:\Users\Hello\Downloads
     (CTRL+C if you want to stop the program)
 
-    Would you like to: DELETE FILES (0) or CLEAN UP THE FOLDER (1)  or SORT THE FOLDER (2):
+    Would you like to: DELETE FILES (0) or CLEAN UP THE FOLDER (1)  or SORT THE FOLDER (2) or EXTRACT ALL FILES (3) :
 	
 ```
 
