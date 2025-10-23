@@ -2,6 +2,10 @@
 
 int main(int argc, char *argv[])
 {
+
+    if(!admin_mode())
+        tell_error(__PRIVILEGE__ERROR__, NULL);
+        
     printf("Avez vous d%cplac%c un des fichiers/dossiers, que vous venez de t%cl%ccharger ? (o/n) ", é, é, é, é);
 
     char *answer = malloc(sizeof(char) + 1);

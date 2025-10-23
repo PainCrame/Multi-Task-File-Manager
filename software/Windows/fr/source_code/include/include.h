@@ -8,10 +8,12 @@
 #include ".\trieur_function\trieur.h"
 #include ".\argument\argument.h"
 #include ".\extract\extract.h"
+#include ".\privilege\privilege.h"
 #include <dirent.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <windows.h>
 
 #define é 130
 #define è 138
@@ -38,5 +40,6 @@
 #define __FILE__DELETE__ERROR__ 9
 #define __FOLDER__DELETE__ERROR__ 10
 #define __GET__DIR__ERROR__ 11
+#define __PRIVILEGE__ERROR__ 12
 
 #endif

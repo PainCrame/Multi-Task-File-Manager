@@ -85,7 +85,7 @@ int make_program_dir(char *ProgramName, char *NewPath)
 
     if (c == 0)
     {
-        printf("\nLe dossier \\%s a été correctement cr%c%c", ProgramName, é, é);
+        printf("\nLe dossier \\%s a %ct%c correctement cr%c%c", ProgramName, é, é, é, é);
         return make_bin_dir(NewPath);
     }
     else

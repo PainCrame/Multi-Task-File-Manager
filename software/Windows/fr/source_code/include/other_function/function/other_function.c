@@ -105,6 +105,13 @@ int tell_error(int error_code, char *_Str)
             perror("\nERROR ");
             stopRun(EXIT_FAILURE);
         }
+
+        case __PRIVILEGE__ERROR__:
+        {
+            fprintf(stderr, RED"\nERREUR : Le programme n'a pas %ct%c lanc%c en tant qu'administrateur"RESET, é, é, é);
+
+            stopRun(EXIT_FAILURE);
+        }
     }
 
     return 1;
