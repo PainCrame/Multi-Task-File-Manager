@@ -87,8 +87,9 @@ int main(int argc, char *argv[])
 
         else if(instruction == 3)
         {
-            printf(RED"\nATTENTION : Les sous dossiers une fois vidé seront supprimés."RESET" \nSouhaitez vous continuer ? Oui (0) / Non (1)");
-            scanf("%d", instruction);
+            printf(RED"\nATTENTION : Les sous dossiers une fois vid%c seront supprim%cs."RESET" \nSouhaitez vous continuer ? Oui (0) / Non (1) : ", é, é);
+            scanf("%d", &instruction);
+            viderBuffer();
 
             if(instruction != 0)
                 continue;
