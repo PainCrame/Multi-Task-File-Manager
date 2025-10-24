@@ -1,9 +1,8 @@
 #include "..\header\uninstaller.h"
 
-int main(void)
+void remove_program_file(void)
 {
-
-FILE *f;
+    FILE *f;
 
     f = fopen("C:\\Program Files\\GestionnaireDeFichierMT\\bin\\gfmt.exe", "r+");
 
@@ -18,43 +17,41 @@ FILE *f;
 
     if(errno != 0)
         tell_error(__FILE__DELETE__ERROR__, "gfmt.exe");
+    
+    printf("\nFichier gfmt.exe supprim%c !", é);
 
     rmdir("C:\\Program Files\\GestionnaireDeFichierMT\\bin");
 
     if(errno != 0)
         tell_error(__FOLDER__DELETE__ERROR__, "C:\\Program Files\\GestionnaireDeFichierMT\\bin");
 
+    printf("\nDossier C:\\Program Files\\GestionnaireDeFichierMT\\bin supprim%c !", é);
+
     rmdir("C:\\Program Files\\GestionnaireDeFichierMT");
     
     if(errno != 0)
         tell_error(__FOLDER__DELETE__ERROR__, "C:\\Program Files\\GestionnaireDeFichierMT");
 
-        const char *__PATH__ENV__ = getenv( "PATH" );
+    printf("\nDossier C:\\Program Files\\GestionnaireDeFichierMT supprim%c !", é);
+}
 
-    printf("PATH / %s ", __PATH__ENV__);
-
-    char *__PATH__ENV__COPY__ = strdup(__PATH__ENV__);
-
+int get_number_in_env(const char *__PATH__ENV__)
+{
     int nb_of_program_in_env = 0;
 
     const char *separator = ";";
     const char *program_path = "C:\\Program Files\\GestionnaireDeFichierMT\\bin";
 
-    printf("\nEnv copie !");
+    char *__PATH__ENV__COPY__ = strdup(__PATH__ENV__);
 
     char *token = strtok(__PATH__ENV__COPY__, separator);
-
-    printf("\nComptage du nombre d'apparitions");
 
     if(strcmp(token, program_path) == 0)
             nb_of_program_in_env++;
 
-    printf("\nDebut de boucle");
 
     while(token != NULL) //comptage nombre apparition pour malloc
-    {
-        printf("\nToken : %s", token);
-        
+    {        
         if(strcmp(token, program_path) == 0)
         nb_of_program_in_env++;
 
@@ -62,19 +59,25 @@ FILE *f;
     }
 
     free(__PATH__ENV__COPY__);
-    __PATH__ENV__COPY__ = NULL;
-    __PATH__ENV__COPY__ = strdup(__PATH__ENV__);
+
+    return nb_of_program_in_env;
+}
+
+char *get_new_path_env(const char *__PATH__ENV__)
+{
+    char *__PATH__ENV__COPY__ = strdup(__PATH__ENV__);
+    const char *separator = ";";
+    const char *program_path = "C:\\Program Files\\GestionnaireDeFichierMT\\bin";
+    char *token;
+    char *new_path_env;
+    int nb_of_program_in_env;
+
+    nb_of_program_in_env = get_number_in_env(__PATH__ENV__);
 
     size_t new_path_size = strlen(__PATH__ENV__) - strlen("C:\\Program Files\\GestionnaireDeFichierMT\\bin;") * nb_of_program_in_env - strlen(";") + 1; //calcul nouvelle taille
-    printf("\nNombre : %d", nb_of_program_in_env);
-
-    char *new_path_env = malloc(new_path_size);
-
-    printf("\nDebut de la copie du premier terme");
+    new_path_env = malloc(new_path_size);
 
     token = strtok(__PATH__ENV__COPY__, separator); //decoupage
-
-    printf("\nPremier decoupage reussi");
 
     while(strcmp(token, program_path) == 0) //si gfmt est au debut
     {
@@ -84,15 +87,10 @@ FILE *f;
             break;
     }
 
-    printf("\nPremiere copy");
-
     strcpy(new_path_env, token); //cpy prcq cat fonctionne pas sur une chaine vide
     strcat(new_path_env, ";");
     
     token = strtok(NULL, separator);
-
-
-    printf("\nDebut de la copie des termes");
 
     while(token != NULL)
     {
@@ -107,12 +105,13 @@ FILE *f;
 
     new_path_env[strlen(new_path_env) - 1] = '\0'; //retirer le dernier ";"
 
-    printf("\ncopy : %s", __PATH__ENV__COPY__);;
+    free(__PATH__ENV__COPY__);
 
+    return new_path_env;
+}
 
-    printf("\nTaille voulue : %lld, taille obtenue : %lld", new_path_size - 1, strlen(new_path_env));
-    printf("\n%s", new_path_env);
-
+char *get_command_for_env(char *new_path_env)
+{
     char *command = malloc(strlen("setx PATH \"") + strlen(new_path_env) + strlen("\"") + 1);
 
     if(command == NULL)
@@ -122,8 +121,35 @@ FILE *f;
     strcat(command, new_path_env);
     strcat(command, "\"");
 
+    return command;
+}
+
+void remove_program_of_path(char *new_path_env)
+{
+    char *command = get_command_for_env(new_path_env);
+
     if(system(command) == -1)
         tell_error(0, NULL);
+
+    printf("La suppression de l'adresse du programme a correctement %ct%c effectu%c !", é, é, é);
+
+    free(command);
+}
+
+int main(void)
+{
+    const char *__PATH__ENV__ = getenv( "PATH" );
+    int nb_of_program_in_env;
+    const char *separator = ";";
+    const char *program_path = "C:\\Program Files\\GestionnaireDeFichierMT\\bin";
+    char *new_path_env;
+    char *token;
+
+    remove_program_file();
+
+    new_path_env = get_new_path_env(__PATH__ENV__);
+
+    remove_program_of_path(new_path_env);
 
     printf("\nLe logiciel %c correctement %ct%c supprim%c. Merci de l'avoir utili%c !", à, é, é, é, é);
 

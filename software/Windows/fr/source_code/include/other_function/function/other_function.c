@@ -8,7 +8,7 @@ void viderBuffer(void)
 
 void stopRun(int code)
 {
-    printf("Appuyez sur ENTREE pour SORTIR");
+    printf("\nAppuyez sur ENTREE pour SORTIR");
     getchar();
     exit(code);
 }
