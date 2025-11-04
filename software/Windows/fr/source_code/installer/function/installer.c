@@ -16,7 +16,6 @@ int main(int argc, char *argv[])
 
     char *CodePath_cpy;
     fgets(answer, sizeof(answer), stdin);
-    viderBuffer();
 
     if(strcmp(answer, "o\n") == 0)
     {

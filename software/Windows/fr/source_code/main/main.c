@@ -2,6 +2,7 @@
 
 int main(int argc, char *argv[])
 {
+    log_info("INFO.log", "a+", __PROGRAM__LAUNCHED__);
 
     check_option(argc, argv);
 
@@ -87,12 +88,12 @@ int main(int argc, char *argv[])
 
         else if(instruction == 3)
         {
-            printf(RED"\nATTENTION : Les sous dossiers une fois vid%c seront supprim%cs."RESET" \nSouhaitez vous continuer ? Oui (0) / Non (1) : ", é, é);
-            scanf("%d", &instruction);
-            viderBuffer();
+            // printf(RED"\nATTENTION : Les sous dossiers une fois vid%c seront supprim%cs."RESET" \nSouhaitez vous continuer ? Oui (0) / Non (1) : ", é, é);
+            // scanf("%d", &instruction);
+            // viderBuffer();
 
-            if(instruction != 0)
-                continue;
+            // if(instruction != 0)
+            //     continue;
 
             extract_main_folder();
 

@@ -9,11 +9,14 @@
 #include ".\argument\argument.h"
 #include ".\extract\extract.h"
 #include ".\privilege\privilege.h"
+#include ".\log_function\log.h"
 #include <dirent.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
 #include <windows.h>
+#include <sys/stat.h>
+#include <time.h>
 
 #define é 130
 #define è 138
