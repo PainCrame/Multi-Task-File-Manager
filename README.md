@@ -44,6 +44,14 @@ Simple installation:
 -Run the installer.
 -The software is now installed ! Open a terminal and run the command ```mtfm --hello```
 
+## ⬆️ Uninstallation
+Simple installation:
+
+-Download the corresponding uninstaller here (uninstaller/Windows/en)    
+-Run the uninstaller.
+-The software is now uninstalled !
+
+
 
 ## 💭 Feedback and Contributing  
   
