@@ -39,10 +39,10 @@ Open a terminal and run the command ```mtfm "C:\The_path_to_the_folder"```
 ## ⬇️ Installation
 
 Simple installation:
--Download the file corresponding to your situation (for example, on Windows in English, go to the folder software\Windows\en\bin and download the exe file)  
+-Download the file corresponding to your situation (for example, on Windows in English, go to the folder software/Windows/en/bin and download the exe file)  
 -Download the corresponding installer here (installer/Windows/en)    
--Run the installer as an administrator (Shift + left click).  
--The software is now installed! Open a terminal and run the command ```mtfm --hello```   
+-Run the installer.
+-The software is now installed ! Open a terminal and run the command ```mtfm --hello```
 
 
 ## 💭 Feedback and Contributing  
