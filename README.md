@@ -34,7 +34,7 @@ Open a terminal and run the command ```mtfm "C:\The_path_to_the_folder"```
 	
 ```
 
-
+You can then choose which actions to perform on the folder and its files.
 
 ## ⬇️ Installation
 
