@@ -26,6 +26,7 @@ char *get_file_name(char *file_name)
         tell_error(0, NULL);
 
     char *new_name = malloc(strlen("..\\") + strlen(token) + 1);
+    printf("%d", strlen("..\\"));
 
     if(new_name == NULL)
         tell_error(__ALLOCATION__ERROR__, NULL);
@@ -132,7 +133,7 @@ void print_current_dir(void)
     if(path == NULL)
         tell_error(__GET__DIR__ERROR__, NULL);
 
-    printf("\nExtraction depuis le dossier %s", path);
+    printf("\nExtracting from %s", path);
 
     free(path);
 }
@@ -165,9 +166,7 @@ void move_file_back(char *file_name)
     if(errno != 0)
         tell_error(__FILE__MOVE__ERROR__, new_name);
 
-    log_info(__INFO__LOG__, "a+", __MOVED__FILE__LOG__, __FILE__, __LINE__, file_name);
-
-    printf("\nFichier %s "GREEN"d%cplac%c"RESET, file_name, é, é);
+    printf("\nFile %s "GREEN"decplaced"RESET, file_name);
 
     free(new_name);
 }
@@ -226,7 +225,7 @@ void extract_files(char *folder)
     if(remove_dir(folder) == 0)
         return;
 
-    fprintf(stderr, YELLOW"\nLe dossier %s n'a pas pu %ctre supprim%c"RESET, folder, ê, é);
+    fprintf(stderr, YELLOW"\nThe Folder %s couldn't be moved"RESET, folder);
     perror("ERROR ");
 }
 

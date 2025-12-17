@@ -2,7 +2,6 @@
 
 int main(int argc, char *argv[])
 {
-
     if(!admin_mode())
         tell_error(__PRIVILEGE__ERROR__, NULL);
         
@@ -16,31 +15,16 @@ int main(int argc, char *argv[])
 
     char *CodePath_cpy;
     fgets(answer, sizeof(answer), stdin);
+    
+    if(getcwd(CodePath, sizeof(char)*300) == NULL)
+        tell_error(__GET__DIR__ERROR__, CodePath);
+        
+    CodePath_cpy = strdup(CodePath);
 
-    if(strcmp(answer, "o\n") == 0)
-    {
-        free(answer);
-        printf("\nEntrez le chemin complet vers le dossier où se situe le fichier \"gfmt.exe\" (%ca ressemble %c \"C:\\Utilisateur\\<votre_nom>\\T%cl%cchargements\"): ", ç, à, é, é);
-        fgets(CodePath, sizeof(CodePath), stdin);
-        viderBuffer();
-        CodePath_cpy = strdup(CodePath);
-        CodePath = realloc(CodePath, strlen(CodePath) + 1 + strlen("\\gfmt.exe") + 1);
+    if(CodePath_cpy == NULL)
+        tell_error(__ALLOCATION__ERROR__, NULL);
 
-        if(CodePath_cpy == NULL)
-            tell_error(__ALLOCATION__ERROR__, NULL);
-
-        strcat(CodePath, "\\gfmt.exe");
-    }
-    else
-    {
-        getcwd(CodePath, sizeof(char)*300);
-        CodePath_cpy = strdup(CodePath);
-
-        if(CodePath_cpy == NULL)
-            tell_error(__ALLOCATION__ERROR__, NULL);
-
-        strcat(CodePath, "\\gfmt.exe");
-    }
+    strcat(CodePath, "\\gfmt.exe");
     
     move_in_VPATH("GestionnaireDeFichierMT", CodePath, "gfmt.exe");
 

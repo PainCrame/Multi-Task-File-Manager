@@ -44,5 +44,18 @@
 #define __FOLDER__DELETE__ERROR__ 10
 #define __GET__DIR__ERROR__ 11
 #define __PRIVILEGE__ERROR__ 12
+#define __HOUR__LOG__ 13
+#define __PROGRAM__LAUNCHED__LOG__ 14
+#define __RESET__LOG__ 15
+#define __SUPPRESSED__FILE__LOG__ 16
+#define __EXTENSION__SUPPRESSION__MODE__LOG__ 17
+#define __FILE__SUPPRESSION__MODE__LOG__ 18
+#define __FOLDER__CLEAR__MODE__LOG__ 19
+#define __FOLDER__SORT__MODE__LOG__ 20
+#define __FILE__DELETE__ERROR__LOG__ 21
+#define __OPENING__ERROR__LOG__ 22
+#define __FOLDER__EXTRACT__MODE__LOG__ 23
+#define __MOVED__FILE__LOG__ 24
+
 
 #endif

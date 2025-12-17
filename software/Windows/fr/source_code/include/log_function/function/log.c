@@ -97,100 +97,211 @@ FILE *fwrite_log(FILE *_File, int code, char *file_name);
     
 // }
 
-
-
 char *get_current_time(void)
 {
-    char *current_time = malloc(24*sizeof(char));
-    time_t now;
     
-    time(&now);
+    time_t now = time(NULL);
+
+    char *current_time = ctime(&now);
     
-    current_time = ctime(&now);
-    
-    return current_time;
+    return strdup(current_time);
 }
 
+//write current line and file for debug
+void current_execution_line(FILE *_File, char *_file_name_, int _line_)
+{
+    if(_File == NULL)
+        tell_error(__FILE__OPENNING__ERROR__, NULL);
+
+    fwrite("\nIn file ", 1, strlen("\nIn file "), _File);
+    fwrite(_file_name_, 1, strlen(_file_name_), _File);
+
+    fprintf(_File, " at line %d", _line_);
+}
 
 
 FILE *fwrite_log(FILE *_File, int code, char *file_name)
 {
+    if(code<13) //if the code is an error
+        fprintf(_File, "\nERRNO : %d", errno);
+    
+    errno = 0;
+    
     char *current_hour = get_current_time();
 
     switch (code)
     {
-    case 0:
-        /* code */
-        break;
-
-    case 1:
-        break;
-
-    case __HOUR__:
-        fwrite(__OPEN__LOG__STR__, strlen(__OPEN__LOG__STR__), 1, _File);
-        fwrite(current_hour, strlen(current_hour), 1, _File);
-        fwrite("\n", strlen("\n"), 1, _File);
-        break;
-
-    case __RESET__:
-        fclose(_File);
-        _File = fopen(file_name, "w+");
-        fwrite(__RESET__LOG__STR__, strlen(__RESET__LOG__STR__), 1, _File);
-        fwrite(" at ", strlen(" at "), 1, _File);
-        fwrite(current_hour, strlen(current_hour), 1, _File);
-        fwrite("\n", strlen("\n"), 1, _File);
-        return _File;
-        break;
-
-    case __SUPPRESSED__FILE__:
-        fwrite(file_name, strlen(file_name), 1, _File);
-        fwrite(__SUPPRESSED__STR__, strlen(__SUPPRESSED__STR__), 1, _File);
-        fwrite("\n", strlen("\n"), 1, _File);
-        break;
+        case 0:
+        {
+            fwrite(__ERROR__OCCURED__STR__, strlen(__ERROR__OCCURED__STR__), 1, _File);
+            stopRun(EXIT_FAILURE);
+            break;
+        } 
         
-    case __EXTENSION__SUPPRESSION__MODE__:
-        fwrite(__ACTION__STR__, strlen(__ACTION__STR__), 1, _File);
-        fwrite(__EXTENSION__STR__, strlen(__EXTENSION__STR__), 1, _File);
-        fwrite("\n", strlen("\n"), 1, _File);
-        break;
+        case __OPENING__ERROR__LOG__:
+        {
+            fwrite(__OPENING__ERROR__STR__, strlen(__OPENING__ERROR__STR__), 1, _File);
+            fwrite(file_name, strlen(file_name), 1, _File);
+            fwrite(__CHECK__IF__OPEN__STR, strlen(__CHECK__IF__OPEN__STR), 1, _File);
+            break;
+        }
 
-    case __FILE__SUPPRESSION__MODE__:
-        fwrite(__ACTION__STR__, strlen(__ACTION__STR__), 1, _File);
-        fwrite(__FILE__STR__, strlen(__FILE__STR__), 1, _File);
-        fwrite("\n", strlen("\n"), 1, _File);
-        break;
-    
-        case __FOLDER__CLEAR__MODE__:
-        fwrite(__ACTION__STR__, strlen(__ACTION__STR__), 1, _File);
-        fwrite(__CLEAR__STR__, strlen(__CLEAR__STR__), 1, _File);
-        fwrite("\n", strlen("\n"), 1, _File);
-        break;
+        case __INVALID__OPTIONN__:
+        {
+            fwrite(__INVALID__OPTION__STR__, strlen(__INVALID__OPTION__STR__), 1, _File);
+            break;
+        }
 
-    case __FOLDER__SORT__MODE__:
-        fwrite(__ACTION__STR__, strlen(__ACTION__STR__), 1, _File);
-        fwrite(__SORT__STR__, strlen(__SORT__STR__), 1, _File);
-        fwrite("\n", strlen("\n"), 1, _File);
-        break;
+        case __ARGUMENT__ERROR__:
+        {
+            fwrite(__ARGUMENT__ERROR__STR__, strlen(__ARGUMENT__ERROR__STR__), 1, _File);
+            break;
+        }
 
-    default:
-        break;
+        case __ALLOCATION__ERROR__:
+        {
+            fwrite(__MEMORY__ALLOCATION__ERROR__STR__, strlen(__MEMORY__ALLOCATION__ERROR__STR__), 1, _File);
+            break;
+        }
+
+        case __PATH__LENGTH__ERROR__:
+        {
+            fwrite(__PATH__LENGTH__ERROR__STR__, strlen(__PATH__LENGTH__ERROR__STR__), 1, _File);
+            break;
+        }
+
+        case __FILE__MOVE__ERROR__:
+        {
+            fwrite(__FILE__DELETE__ERROR__STR__, strlen(__FILE__DELETE__ERROR__STR__), 1, _File);
+            fwrite(file_name, strlen(file_name), 1, _File);
+            break;
+        }
+
+        case __MAKE_FOLDER__ERROR__:
+        {
+            fwrite(__MAKE__FOLDER__ERROR__STR__, strlen(__MAKE__FOLDER__ERROR__STR__), 1, _File);
+            fwrite(file_name, strlen(file_name), 1, _File);
+            break;
+        }
+
+        case __FILE__DELETE__ERROR__:
+        {
+            fwrite(__FILE__DELETE__ERROR__STR__ , strlen(__FILE__DELETE__ERROR__STR__), 1, _File);
+            fwrite(file_name, strlen(file_name), 1, _File);
+            break;
+        }
+
+        case __FOLDER__DELETE__ERROR__:
+        {
+            fwrite(__FOLDER__DELETE__ERROR__STR__, strlen(__FOLDER__DELETE__ERROR__STR__), 1, _File);
+            fwrite(file_name, strlen(file_name), 1, _File);
+            break;
+        }
+
+        case __GET__DIR__ERROR__:
+        {
+            fwrite(__GET__DIR__ERROR__STR__, strlen(__GET__DIR__ERROR__STR__), 1, _File);
+            break;
+        }
+
+        case __PRIVILEGE__ERROR__:
+        {
+            fwrite(__PRIVILEGE__ERROR__STR__, strlen(__PRIVILEGE__ERROR__STR__), 1, _File);
+            break;
+        }
+
+        case __HOUR__LOG__:
+        {
+            fwrite(__OPEN__LOG__STR__, strlen(__OPEN__LOG__STR__), 1, _File);
+            fwrite(current_hour, strlen(current_hour), 1, _File);
+            fwrite("\n", strlen("\n"), 1, _File);
+
+            free(current_hour);
+            current_hour = NULL;
+
+            return _File;
+            break;
+        }
+
+        case __PROGRAM__LAUNCHED__LOG__:
+        {
+            fwrite(__PROGRAM__LAUNCHED__STR__, strlen(__PROGRAM__LAUNCHED__STR__), 1, _File);
+
+            free(current_hour);
+            current_hour = NULL;
+
+            return _File;
+            break;
+        }
+
+        case __SUPPRESSED__FILE__LOG__:
+        {
+            fwrite(__ACTION__STR__, strlen(__ACTION__STR__), 1, _File);
+            fwrite(file_name, strlen(file_name), 1, _File);
+            fwrite(__SUPPRESSED__STR__, strlen(__SUPPRESSED__STR__), 1, _File);
+        }
+
+        case __EXTENSION__SUPPRESSION__MODE__LOG__:
+        {
+            fwrite(__ACTION__STR__, strlen(__ACTION__STR__), 1, _File);
+            fwrite(__EXTENSION__SUPPRESSION__MODE__STR__, strlen(__EXTENSION__SUPPRESSION__MODE__STR__), 1, _File);
+            break;
+        }
+
+        case __FILE__SUPPRESSION__MODE__LOG__:
+        {
+            fwrite(__ACTION__STR__, strlen(__ACTION__STR__), 1, _File);
+            fwrite(__FILE__SUPPRESSION__MODE__STR__, strlen(__FILE__SUPPRESSION__MODE__STR__), 1, _File);
+            break;
+        }
+
+        case __FOLDER__CLEAR__MODE__LOG__:
+        {
+            fwrite(__ACTION__STR__, strlen(__ACTION__STR__), 1, _File);
+            fwrite(__FOLDER__CLEAR__MODE__STR__, strlen(__FOLDER__CLEAR__MODE__STR__), 1, _File);
+            break;
+        }
+
+        case __FOLDER__SORT__MODE__LOG__:
+        {
+            fwrite(__ACTION__STR__, strlen(__ACTION__STR__), 1, _File);
+            fwrite(__FOLDER__SORT__MODE__STR__, strlen(__FOLDER__SORT__MODE__STR__), 1, _File);
+            break;
+        }
+
+        case __FOLDER__EXTRACT__MODE__LOG__:
+        {
+            fwrite(__ACTION__STR__, strlen(__ACTION__STR__), 1, _File);
+            fwrite(__FOLDER__EXTRACT__MODE__STR__, strlen(__FOLDER__EXTRACT__MODE__STR__), 1, _File);
+            break;
+        }
+
+        case __MOVED__FILE__LOG__:
+        {
+            fwrite(__ACTION__STR__, strlen(__ACTION__STR__), 1, _File);
+            fwrite(file_name, strlen(file_name), 1, _File);
+            fwrite(__MOVED__STR__, strlen(__MOVED__STR__), 1, _File);
+        }
+
     }
 
+    free(current_hour);
+    current_hour = NULL;
+    
     fclose(_File);
 }
 
-void open_log_dir(void)
+void open_log_dir(void) //go into APPDATA/LOCAL/GFMT
 {
-    DIR *d;
     if(opendir("GestionnaireDeFichierMT") == NULL)
         if(mkdir("GestionnaireDeFichierMT") != 0)
             tell_error(__MAKE_FOLDER__ERROR__, "GestionnaireDeFichierMT");
     
     if(chdir("GestionnaireDeFichierMT") != 0)
-        tell_error(__FOLDER__OPENNING__ERROR__, "GestipnnaireDeFichierMT");
+        tell_error(__FOLDER__OPENNING__ERROR__, "GestionnaireDeFichierMT");
 }
 
-void chdir_log(void)
+void chdir_log(void) //go into APPDATA/LOCAL
 {
     char *APPDATA;
     if((APPDATA = getenv("APPDATA")) == NULL)
@@ -214,7 +325,7 @@ int freset_log(char *file_name)
     if((f = fopen(file_name, "w+")) == NULL)
         tell_error(__FILE__OPENNING__ERROR__, file_name);
         
-    fwrite_log(f, __RESET__, file_name);
+    fwrite_log(f, __RESET__LOG__, file_name);
 
     fclose(f);
         
@@ -226,7 +337,7 @@ void fcopy(char *file_name, char *new_file_name)
 {
     FILE *src;
     
-    if((src = fopen(file_name, "rb")) == NULL)
+    if((src = fopen(file_name, "rb")) == NULL) //check if src file existing
     {
         fprintf(stderr, "Erreur d'ouverture dans le fichier %s.", file_name);
         exit(EXIT_FAILURE);
@@ -234,7 +345,7 @@ void fcopy(char *file_name, char *new_file_name)
 
     FILE *dest;
 
-    if( (dest = fopen(new_file_name, "wb")) == NULL)
+    if( (dest = fopen(new_file_name, "wb")) == NULL) //check if dest file existing
     {
         fprintf(stderr, "Erreur d'ouverture dans le fichier pour sauvegarder le log");
         exit(EXIT_FAILURE);
@@ -244,10 +355,8 @@ void fcopy(char *file_name, char *new_file_name)
 
     int ch;
 
-    while( (ch = fread(buffer, 1, sizeof(buffer), src)) != 0)
-    {
-        int byte = fwrite(buffer, 1, ch, dest);
-    }
+    while( (ch = fread(buffer, 1, sizeof(buffer), src)) != 0) //copy
+        fwrite(buffer, 1, ch, dest);
 
     fclose(src);
     fclose(dest);
@@ -255,20 +364,23 @@ void fcopy(char *file_name, char *new_file_name)
     src = NULL;
     dest = NULL;
 
-    freset_log(file_name);
+    free(new_file_name);
+    new_file_name = NULL;
+
+    freset_log(file_name); //reset src log
 }
 
 void check_log_size(char *file_name)
 {
-    struct stat *info;
+    struct stat info;
 
-    if(stat(file_name, info) != 0)
+    if(stat(file_name, &info) != 0)
         tell_error(__FILE__OPENNING__ERROR__, file_name);
 
-    if(info->st_size <= 500000)
+    if(info.st_size <= 1000000) //if log size > 1 Mo
         return;
 
-    char *new_file_name = malloc(strlen(file_name) + strlen(".save") + 1);
+    char *new_file_name = malloc(strlen(file_name) + strlen(".save") + 1); //make .save file
     
     if(new_file_name == NULL)
         tell_error(__ALLOCATION__ERROR__, NULL);
@@ -276,17 +388,16 @@ void check_log_size(char *file_name)
     strcpy(new_file_name, file_name);
     strcat(new_file_name, ".save");
 
-
     fcopy(file_name, new_file_name);
 }
 
 FILE *fopen_log(char *file_name, char *mod)
 {
-    chdir_log();
+    chdir_log(); //go to APPDATA/LOCAL environnement
 
-    open_log_dir();
+    open_log_dir(); //go to log program environnement
 
-    FILE *f = fopen(file_name, mod);
+    FILE *f = fopen(file_name, mod); 
 
     if (f == NULL)
     {
@@ -294,21 +405,33 @@ FILE *fopen_log(char *file_name, char *mod)
         exit(EXIT_FAILURE);
     }
 
-    fwrite_log(f, __HOUR__, file_name);
+    fwrite_log(f, __HOUR__LOG__, file_name);
 
     return f;
 }
 
-void log_info(char *file_name, char *mode, int info_code)
+void log_info(char *file_name, char *mode, int info_code, char *__file__, int _line_, char *Str_)
 {  
+    char old_working_dir[MAX_PATH];     //save program environnement
+    
+    getcwd(old_working_dir, MAX_PATH);
+    
     FILE *f = fopen_log(file_name, mode);
 
     if(f == NULL)
         tell_error(__FILE__OPENNING__ERROR__, file_name);
 
-    fwrite_log(f, info_code, file_name);
+    current_execution_line(f, __file__, _line_);
+
+    fwrite_log(f, info_code, Str_);
 
     check_log_size(file_name);
+
+    if(chdir(old_working_dir) != 0)     //back to old environnement
+        tell_error(__FOLDER__OPENNING__ERROR__, old_working_dir);
+
+    if(f)
+        fclose(f);
         
     return;
 }

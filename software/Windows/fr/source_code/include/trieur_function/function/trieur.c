@@ -32,9 +32,6 @@ void move(char* file_name)
         printf(GREEN"\nD%cplacement"RESET" de %s", é, file_name);
 
         return;
-        
-
-
     }
 
     else //sinon le créer -> récurisvité

@@ -2,6 +2,9 @@
 
 int main(int argc, char *argv[])
 {
+    if(!admin_mode())
+        tell_error(__PRIVILEGE__ERROR__, NULL);
+
     printf("Did you move any of the files you just downloaded? (y/n) ");
 
     char *answer = malloc(sizeof(char) + 1);
@@ -12,32 +15,17 @@ int main(int argc, char *argv[])
 
     char *CodePath_cpy;
     fgets(answer, sizeof(answer), stdin);
-    viderBuffer();
 
-    if(strcmp(answer, "o") == 0)
-    {
-        free(answer);
-        printf("\nEnter the full access path to the \"mtfm.exe\" file (it looks like \"C:Users\\<your_name>\\Downloads\\\"): ");
-        fgets(CodePath, sizeof(CodePath), stdin);
-        viderBuffer();
-        CodePath_cpy = strdup(CodePath);
-        CodePath = realloc(CodePath, strlen(CodePath) + 1 + strlen("\\gfmt.exe") + 1);
-        
-        if(CodePath_cpy == NULL)
-            tell_error(__ALLOCATION__ERROR__, NULL);
-        
-        strcat(CodePath, "\\mtfm.exe");
-    }
-    else
-    {
-        getcwd(CodePath, sizeof(char)*300);
-        CodePath_cpy = strdup(CodePath);
+    if(getcwd(CodePath, sizeof(char)*300) == NULL)
+        tell_error(__GET__DIR__ERROR__, CodePath);
 
-        if(CodePath_cpy == NULL)
-            tell_error(__ALLOCATION__ERROR__, NULL);
+    CodePath_cpy = strdup(CodePath);
 
-        strcat(CodePath, "\\mtfm.exe");
-    }
+    if(CodePath_cpy == NULL)
+        tell_error(__ALLOCATION__ERROR__, NULL);
+
+    strcat(CodePath, "\\mtfm.exe");
+
     
     move_in_VPATH("MultiTaskFM", CodePath, "mtfm.exe");
 

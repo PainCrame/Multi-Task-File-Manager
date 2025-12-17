@@ -15,9 +15,7 @@ int main(int argc, char *argv[])
     }
 
     if(chdir(argv[1]) != 0)
-    {
         tell_error(__FOLDER__OPENNING__ERROR__, NULL);
-    }
 
     printf("\nWelcome to the uninstaller program!\n");
     
@@ -37,23 +35,19 @@ int main(int argc, char *argv[])
             scanf("%d", &instruction);
             viderBuffer();
 
-            if(instruction==0)
+            if(instruction != 0)
             {  
-                clear_folder();
-
-            }else if( instruction == 1){
-
+                instruction = 4;
                 continue;
-                
-            }else{
-                tell_error(__INVALID__OPTIONN__, NULL);
             }
-            return 1;
+
+            clear_folder();
+            instruction = 4;
         }
 
         else if(instruction == 0)
         {
-            instruction = 3;
+            instruction = 4;
 
             printf("\nDo you want uninstall files by :"BLUE" NAMES (0)"RESET" or"BLUE" EXTENSION (1)"RESET" : ");
             scanf("%d", &instruction);
@@ -62,10 +56,14 @@ int main(int argc, char *argv[])
             if(instruction == 0)
             {
                 process_uninstall_file();
+
+                instruction = 4;
             }
             else if(instruction == 1)
             {
                 uninstall_extension(argv[0]);
+
+                instruction = 4;
             }
             else
             {
@@ -80,6 +78,22 @@ int main(int argc, char *argv[])
             trier();
 
             printf("\nThe file has been sorted correctly.");
+        }
+
+        else if(instruction == 3)
+        {
+            // printf(RED"\nATTENTION : Les sous dossiers une fois vid%c seront supprim%cs."RESET" \nSouhaitez vous continuer ? Oui (0) / Non (1) : ", é, é);
+            // scanf("%d", &instruction);
+            // viderBuffer();
+
+            // if(instruction != 0)
+            //     continue;
+
+            extract_main_folder();
+
+            printf("\nAll the files has been correctly deleted");
+
+            instruction = 4;
         }
 
         else

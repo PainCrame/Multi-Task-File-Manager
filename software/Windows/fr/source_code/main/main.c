@@ -2,24 +2,21 @@
 
 int main(int argc, char *argv[])
 {
-    log_info("INFO.log", "a+", __PROGRAM__LAUNCHED__);
-
     check_option(argc, argv);
 
     DIR *d;
 
     if((d = opendir(argv[1])) == NULL)
     {
-        perror("\nDossier inexistant ou inacessible\nERROR : ");
-        getchar();
-        exit(EXIT_FAILURE);
+        perror("\nDossier inexistant ou inacessible\nERROR ");
+        stopRun(EXIT_FAILURE);
     }
-
+    
     if(chdir(argv[1]) != 0)
-    {
-        tell_error(__FOLDER__OPENNING__ERROR__, NULL);
-    }
-
+        tell_error(__FOLDER__OPENNING__ERROR__, NULL);    
+    
+    log_info("INFO.log", "a+", __PROGRAM__LAUNCHED__LOG__, __FILE__, __LINE__, argv[1]);
+    
     printf("\nBienvenue dans le Gestionnaire de Fichier Multi-fonction !\n");
     
     while(1)
@@ -44,6 +41,8 @@ int main(int argc, char *argv[])
                 continue;
             }
 
+            log_info(__INFO__LOG__, "a+", __FOLDER__CLEAR__MODE__LOG__, __FILE__, __LINE__, argv[1]);
+
             clear_folder();
             instruction = 4;
         }
@@ -58,13 +57,16 @@ int main(int argc, char *argv[])
 
             if(instruction == 0)
             {
+                log_info(__INFO__LOG__, "a+", __FILE__SUPPRESSION__MODE__LOG__, __FILE__, __LINE__, argv[1]);
+
                 process_uninstall_file();
 
                 instruction = 4;
-
             }
             else if(instruction == 1)
             {
+                log_info(__INFO__LOG__, "a+", __EXTENSION__SUPPRESSION__MODE__LOG__, __FILE__, __LINE__, argv[1]);
+
                 uninstall_extension(argv[0]);
 
                 instruction = 4;
@@ -79,6 +81,8 @@ int main(int argc, char *argv[])
         {
             instruction = 4;
 
+            log_info(__INFO__LOG__, "a+", __FOLDER__SORT__MODE__LOG__, __FILE__, __LINE__, argv[1]);
+            
             trier();
 
             printf("\nLe dossier a %ct%c correctement tri%c !\n", é, é, é);
@@ -94,6 +98,8 @@ int main(int argc, char *argv[])
 
             // if(instruction != 0)
             //     continue;
+
+            log_info(__INFO__LOG__, "a+", __FOLDER__EXTRACT__MODE__LOG__, __FILE__, __LINE__, argv[1]);
 
             extract_main_folder();
 

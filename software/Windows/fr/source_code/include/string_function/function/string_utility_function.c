@@ -72,7 +72,6 @@ char *get_extension(char *file_name)
   }
   else
     tell_error(__ALLOCATION__ERROR__, NULL);
-  
 }
 
 int get_nb_element_in_string(char *variable)

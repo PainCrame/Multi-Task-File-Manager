@@ -26,7 +26,7 @@ void desinstall(char *file_name)
     remove(file_name);
     
     if(errno != 0)
-        tell_error(__FILE__MOVE__ERROR__, file_name);
+        tell_error(__FILE__DELETE__ERROR__, file_name);
 
     printf(GREEN "\nSuccessful" RESET " uninstallation of" BLUE " %s "RESET"!", file_name);
 }

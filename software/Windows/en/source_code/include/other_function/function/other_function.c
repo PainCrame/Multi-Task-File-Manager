@@ -85,8 +85,33 @@ int tell_error(int error_code, char *_Str)
         case __FILE__DELETE__ERROR__:
         {
             fprintf(stderr, RED"\nERROR: Deletion of %s file failed.", _Str);
+            fprintf(stderr, "\nLaunch the program as administrator can resolve the problem");
+            perror(ERROR );
         }
 
+        case __FOLDER__DELETE__ERROR__:
+        {
+            fprintf(stderr, RED"\nERROR : Deletion of the"RESET WHITE" %s" RESET RED " folder failed"RESET, _Str);
+            fprintf(stderr, "\nLaunch the program as administrator can resolve the problem");
+            perror("\nERROR ");
+            stopRun(EXIT_FAILURE);
+        }
+
+        case __GET__DIR__ERROR__:
+        {
+            fprintf(stderr, RED"\nERROR : The reading of current path %s failed"RESET, _Str);
+            fprintf(stderr, "\nLaunch the program as administrator can resolve the problem");
+            perror("\nERROR ");
+            stopRun(EXIT_FAILURE);
+        }
+
+        case __PRIVILEGE__ERROR__:
+        {
+            fprintf(stderr, RED"\nERROR : The program has doesn't launched as administrator"RESET, é, é, é);
+
+            stopRun(EXIT_FAILURE);
+        }
+    
     }
 
     return 1;

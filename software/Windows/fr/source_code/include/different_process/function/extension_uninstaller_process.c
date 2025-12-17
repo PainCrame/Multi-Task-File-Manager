@@ -41,7 +41,8 @@ void uninstall_extension(char *exe_name_path)
     strarr(list_exception, exception, " ,"); //remplie le tableau à partir des exceptions
     
     // opendir() renvoie un pointeur de type DIR. 
-    DIR *d;
+
+    DIR *d = opendir(".");
     
     if (d == NULL)
         tell_error(__FOLDER__OPENNING__ERROR__, NULL);
