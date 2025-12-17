@@ -34,7 +34,7 @@ Open a terminal and run the command ```mtfm "C:\The_path_to_the_folder"```
 	
 ```
 
-
+You can then choose which actions to perform on the folder and its files.
 
 ## ⬇️ Installation
 
@@ -43,6 +43,14 @@ Simple installation:
 -Download the corresponding installer here (installer/Windows/en)    
 -Run the installer.
 -The software is now installed ! Open a terminal and run the command ```mtfm --hello```
+
+## ⬆️ Uninstallation
+Simple installation:
+
+-Download the corresponding uninstaller here (uninstaller/Windows/en)    
+-Run the uninstaller.
+-The software is now uninstalled !
+
 
 
 ## 💭 Feedback and Contributing  
